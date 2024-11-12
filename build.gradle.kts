@@ -22,8 +22,6 @@ teavm.wasm {
 }
 tasks.assemble.get().dependsOn(tasks.generateWasm)
 
-// make an upload task that builds and then runs  multiv upload ./build/generated/teavm/robot.wasm --slot 1 --runtime ./runtime.bin
-// relative to the project root
 tasks.register("upload", Exec::class) {
     dependsOn("assemble")
     commandLine("multiv", "upload", "./build/generated/teavm/wasm/robot.wasm", "--slot", "1", "--runtime", "./runtime.bin")
