@@ -53,11 +53,19 @@ public class Motor extends SmartDevice {
         setTarget(new MotorControl.Voltage(voltage));
     }
 
+    public void brake(@NotNull BrakeMode mode) throws DeviceException {
+        setTarget(new MotorControl.Brake(mode));
+    }
+
     public void setTarget(@NotNull MotorControl target) throws DeviceException {
         validateConnection();
         CompetitionRuntime.assertRobotEnabled();
         target.apply(this);
         this.target = target;
+    }
+
+    public @NotNull MotorControl getTarget() {
+        return this.target;
     }
 
     public enum Gearset {

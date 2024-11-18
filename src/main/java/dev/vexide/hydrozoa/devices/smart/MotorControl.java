@@ -25,8 +25,6 @@ public abstract class MotorControl {
 //                throw new IllegalArgumentException("Voltage must be in the range [-12, 12]");
 //            }
 
-            System.out.println("Setting voltage to " + voltage);
-
             VexSdk.Motor.vexDeviceMotorBrakeModeSet(motor.handle, V5MotorBrakeMode.Coast);
             VexSdk.Motor.vexDeviceMotorVoltageSet(motor.handle, (int) (voltage * 1000));
         }
