@@ -1,4 +1,4 @@
-package dev.vexide.sdk;
+package dev.vexide.hydrozoa;
 
 public abstract class CompetitionRobot {
     public void connected() {}

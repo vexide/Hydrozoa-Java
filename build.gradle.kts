@@ -1,31 +1,38 @@
 plugins {
-    id("java")
-    id("org.teavm").version("0.10.2")
+    `java-library`
+    `maven-publish`
+    id("org.teavm.library").version("0.10.2")
+    id("hydrozoa").apply(false)
 }
 
 group = "dev.vexide"
-version = "1.0-SNAPSHOT"
+version = "0.1.0"
+
+subprojects {
+    plugins.apply("hydrozoa")
+    plugins.apply("java")
+
+    group = project.group
+    version = project.version
+
+    repositories {
+        mavenCentral()
+    }
+}
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testImplementation(platform("org.junit:junit-bom:5.10.0"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
     implementation("org.jetbrains:annotations:24.0.0")
 
-    implementation(teavm.libs.interop)
+    implementation(project(":vex-sdk"))
 }
 
-teavm.wasm {
-    addedToWebApp = true
-    mainClass = "dev.vexide.Main"
-    targetFileName = "robot.wasm"
-}
-tasks.assemble.get().dependsOn(tasks.generateWasm)
+java {
+    withSourcesJar()
+    withJavadocJar()
 
-tasks.register("upload", Exec::class) {
-    dependsOn("assemble")
-    commandLine("multiv", "upload", "./build/generated/teavm/wasm/robot.wasm", "--slot", "1", "--runtime", "./runtime.bin")
+    sourceCompatibility = JavaVersion.VERSION_21
 }

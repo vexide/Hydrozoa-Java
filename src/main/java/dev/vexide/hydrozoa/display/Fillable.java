@@ -1,4 +1,4 @@
-package dev.vexide.sdk.screen;
+package dev.vexide.hydrozoa.display;
 
 import org.jetbrains.annotations.NotNull;
 
