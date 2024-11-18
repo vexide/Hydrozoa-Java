@@ -6,7 +6,7 @@ import dev.vexide.hydrozoa.Peripherals;
 import dev.vexide.hydrozoa.devices.DeviceException;
 import dev.vexide.hydrozoa.devices.smart.Motor;
 
-public class Robot extends CompetitionRobot {
+public class Robot implements CompetitionRobot {
     private final Motor leftMotor;
     private final Motor rightMotor;
 

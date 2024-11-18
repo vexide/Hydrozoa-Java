@@ -1,18 +1,36 @@
 package dev.vexide.hydrozoa;
 
-public abstract class CompetitionRobot {
-    public void connected() {}
-    public void disconnected() {}
+public interface CompetitionRobot {
+    default void connected() {
+    }
 
-    public void disabledInit() {}
-    public void disabledPeriodic() {}
-    public void disabledExit() {}
+    default void disconnected() {
+    }
 
-    public void autonomousInit() {}
-    public void autonomousPeriodic() {}
-    public void autonomousExit() {}
+    default void disabledInit() {
+    }
 
-    public void driverInit() {}
-    public void driverPeriodic() {}
-    public void driverExit() {}
+    default void disabledPeriodic() {
+    }
+
+    default void disabledExit() {
+    }
+
+    default void autonomousInit() {
+    }
+
+    default void autonomousPeriodic() {
+    }
+
+    default void autonomousExit() {
+    }
+
+    default void driverInit() {
+    }
+
+    default void driverPeriodic() {
+    }
+
+    default void driverExit() {
+    }
 }
