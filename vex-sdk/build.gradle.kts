@@ -19,6 +19,13 @@ publishing {
                 description = "Access low-level VEX V5 hardware features"
                 inceptionYear = "2024"
                 url = "https://vexide.dev"
+                developers {
+                    developer {
+                        id = "doinkythederp"
+                        email = "doinkythederp@icloud.com"
+                        organization = "vexide"
+                    }
+                }
                 licenses {
                     license {
                         name = "The MIT License"

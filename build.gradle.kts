@@ -1,21 +1,32 @@
 plugins {
     `java-library`
     `maven-publish`
+
     id("org.teavm.library").version("0.10.2")
     id("dev.vexide.hydrozoa").apply(false)
+    id("org.jreleaser") version "1.15.0"
 }
 
 group = "dev.vexide"
-version = "0.1.0"
+version = "0.1.0-alpha.1"
 
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {
+            groupId = project.group.toString()
+            artifactId = "hydrozoa"
             pom {
                 name = "Hydrozoa"
                 description = "Create VEX V5 robot programs in Java and Kotlin"
                 inceptionYear = "2024"
                 url = "https://vexide.dev"
+                developers {
+                    developer {
+                        id = "doinkythederp"
+                        email = "doinkythederp@icloud.com"
+                        organization = "vexide"
+                    }
+                }
                 licenses {
                     license {
                         name = "The MIT License"
@@ -39,8 +50,7 @@ allprojects {
     publishing {
         repositories {
             maven {
-                name = "localMavenRepository"
-                url = project.rootProject.uri("../local-maven-repository")
+                url = uri(rootProject.layout.buildDirectory.dir("staging-deploy"))
             }
         }
     }
@@ -54,6 +64,24 @@ allprojects {
 
     repositories {
         mavenCentral()
+    }
+}
+
+jreleaser {
+    signing {
+        setActive("ALWAYS")
+        armored = true
+    }
+    deploy {
+        maven {
+            mavenCentral {
+                create("sonatype") {
+                    setActive("ALWAYS")
+                    url = "https://central.sonatype.com/api/v1/publisher"
+                    stagingRepository("build/staging-deploy")
+                }
+            }
+        }
     }
 }
 
