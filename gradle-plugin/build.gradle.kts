@@ -1,5 +1,6 @@
 plugins {
     `kotlin-dsl`
+    id("com.gradle.plugin-publish") version "1.2.1"
 }
 
 group = "dev.vexide"
@@ -14,10 +15,23 @@ dependencies {
 }
 
 gradlePlugin {
+    website = "https://github.com/vexide/Hydrozoa-Java/tree/main/gradle-plugin"
+    vcsUrl = "https://github.com/vexide/Hydrozoa-Java.git"
     plugins {
-        create("HydrozoaPlugin") {
-            id = "hydrozoa"
-            implementationClass = "dev.vexide.hydrozoa.HydrozoaPlugin"
+        matching { it.name == "dev.vexide.hydrozoa" }.configureEach {
+            id = "dev.vexide.hydrozoa"
+            displayName = "Hydrozoa Gradle plugin"
+            description = "Build & upload Gradle projects to VEX V5 robots"
+            tags = listOf("vex", "robot", "robotics", "v5", "vexide", "hydrozoa")
+        }
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "localPluginRepository"
+            url = uri("../../local-plugin-repository")
         }
     }
 }
