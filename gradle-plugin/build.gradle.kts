@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "dev.vexide"
-version = "0.1.0"
+version = "0.1.0-alpha.1"
 
 repositories {
     mavenCentral()
@@ -30,8 +30,8 @@ gradlePlugin {
 publishing {
     repositories {
         maven {
-            name = "localPluginRepository"
-            url = uri("../../local-plugin-repository")
+            name = "staging"
+            url = uri(layout.buildDirectory.dir("staging-deploy"))
         }
     }
 }
