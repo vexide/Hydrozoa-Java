@@ -22,6 +22,7 @@
             <option value="$PROJECT_DIR$/examples" />
             <option value="$PROJECT_DIR$/examples/clawbot" />
             <option value="$PROJECT_DIR$/examples/clawbot-kotlin" />
+            <option value="$PROJECT_DIR$/examples/screen" />
             <option value="$PROJECT_DIR$/gradle-plugin" />
             <option value="$PROJECT_DIR$/vex-sdk" />
           </set>

@@ -71,7 +71,7 @@ public final class CompetitionRuntime {
                 }
 
                 while (Duration.between(begin, Instant.now()).compareTo(period) < 0) {
-                    VexSdk.vexTasksRun();
+                    Platform.yield();
                 }
             }
         } catch (Throwable e) {
