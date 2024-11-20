@@ -4,7 +4,7 @@ import dev.vexide.hydrozoa.sdk.VexSdk;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-public record Rect(int x1, int y1, int x2, int y2) implements Fillable {
+public record Rect(int x1, int y1, int x2, int y2) implements Shape {
     @Contract(value = "_, _, _, _ -> new", pure = true)
     public static @NotNull Rect fromDimensions(int x, int y, int width, int height) {
         return new Rect(x, y, x + width, y + height);
@@ -16,8 +16,12 @@ public record Rect(int x1, int y1, int x2, int y2) implements Fillable {
     }
 
     @Override
-    public void fill(@NotNull Display screen, @NotNull Rgb color) {
+    public void draw(@NotNull Display screen, @NotNull Rgb color, boolean fill) {
         VexSdk.Display.vexDisplayForegroundColor(color.toInteger());
-        VexSdk.Display.vexDisplayRectFill(x1, y1, x2, y2);
+        if (fill) {
+            VexSdk.Display.vexDisplayRectFill(x1, y1 + Display.HEADER_HEIGHT, x2, y2 + Display.HEADER_HEIGHT);
+        } else {
+            VexSdk.Display.vexDisplayRectDraw(x1, y1 + Display.HEADER_HEIGHT, x2, y2 + Display.HEADER_HEIGHT);
+        }
     }
 }

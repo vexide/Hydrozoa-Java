@@ -7,19 +7,35 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 public class Peripherals {
     private static final Key key = new Key();
+    private static Peripherals instance = new Peripherals();
 
     private final @Nullable SmartPort[] ports = new SmartPort[21];
     private @Nullable Controller primaryController = new Controller(Controller.Id.Primary);
     private @Nullable Controller partnerController = new Controller(Controller.Id.Partner);
     private @Nullable Display display = new Display(key);
 
-    Peripherals() {
+    private Peripherals() {
         for (int i = 0; i < ports.length; i++) {
             ports[i] = new SmartPort(key, i);
         }
+    }
+
+    public static Optional<Peripherals> take() {
+        if (instance == null) {
+            return Optional.empty();
+        }
+
+        var peripherals = instance;
+        instance = null;
+        return Optional.of(peripherals);
+    }
+
+    public static @NotNull Peripherals unsafelyCreate() {
+        return new Peripherals();
     }
 
     @Contract("_ -> new")

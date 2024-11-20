@@ -13,13 +13,13 @@ import java.util.Optional;
 import java.util.function.Function;
 
 public final class CompetitionRuntime {
-    private CompetitionRuntime() {}
+    private CompetitionRuntime() {
+    }
 
     public static final Duration DEFAULT_PERIOD = Duration.ofMillis(2);
     private static @Nullable Boolean wasConnected = null;
     private static @Nullable Mode previousMode = null;
     public static @NotNull Duration period = DEFAULT_PERIOD;
-    private static boolean hasStarted = false;
 
     public static void assertRobotEnabled() throws DeviceException {
         if (!mode().equals(Mode.Driver)) {
@@ -29,12 +29,7 @@ public final class CompetitionRuntime {
 
     public static void start(@NotNull Function<@NotNull Peripherals, @NotNull CompetitionRobot> factory) throws IllegalStateException {
         try {
-            if (hasStarted) {
-                throw new IllegalStateException("Competition runtime has already started");
-            }
-            hasStarted = true;
-
-            var robot = factory.apply(new Peripherals());
+            var robot = factory.apply(Peripherals.take().orElseThrow(() -> new IllegalStateException("Peripherals already taken")));
 
             while (true) {
                 var begin = Instant.now();
@@ -83,7 +78,6 @@ public final class CompetitionRuntime {
             System.err.println("Uncaught exception in competition runtime");
             e.printStackTrace();
         }
-
     }
 
     @Contract(value = "-> new", pure = true)

@@ -1,4 +1,4 @@
-package dev.vexide.hydrozoa.clawbotkt
+package dev.vexide.hydrozoa.examples.clawbotkt
 
 import dev.vexide.hydrozoa.CompetitionRobot
 import dev.vexide.hydrozoa.Controller

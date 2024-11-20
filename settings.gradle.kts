@@ -12,3 +12,5 @@ include("examples:clawbot")
 findProject(":examples:clawbot")?.name = "clawbot"
 include("examples:clawbot-kotlin")
 findProject(":examples:clawbot-kotlin")?.name = "clawbot-kotlin"
+include("examples:screen")
+findProject(":examples:screen")?.name = "screen"

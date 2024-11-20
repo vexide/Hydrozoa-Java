@@ -1,4 +1,4 @@
-package dev.vexide.hydrozoa.clawbot;
+package dev.vexide.hydrozoa.examples.clawbot;
 
 import dev.vexide.hydrozoa.CompetitionRuntime;
 

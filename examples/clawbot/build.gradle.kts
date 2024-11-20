@@ -3,6 +3,6 @@ plugins {
 }
 
 hydrozoa {
-    entrypoint = "dev.vexide.hydrozoa.clawbot.Main"
-    runtime = project.rootProject.layout.projectDirectory.file("runtime.bin")
+    entrypoint = "dev.vexide.hydrozoa.examples.clawbot.Main"
+    runtime = rootProject.layout.projectDirectory.file("hydrozoa.bin")
 }

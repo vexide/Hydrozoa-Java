@@ -18,7 +18,7 @@ val extension = extensions.create<HydrozoaPluginExtension>("hydrozoa")
 
 extension.slot.convention(1)
 extension.outputFile.convention("robot.wasm")
-extension.runtime.convention(layout.projectDirectory.file("runtime.bin"))
+extension.runtime.convention(layout.projectDirectory.file("hydrozoa.bin"))
 
 abstract class UploadTask : Exec() {
     @Input

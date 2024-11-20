@@ -15,11 +15,61 @@ public final class VexSdk {
 
     @StaticInit
     public static final class Display {
+        @Import(module = "vex", name = "vexDisplayRender")
+        public static native void vexDisplayRender(boolean bVsyncWait, boolean bRunScheduler);
+
+        @Import(module = "vex", name = "vexDisplayDoubleBufferDisable")
+        public static native void vexDisplayDoubleBufferDisable();
+
         @Import(module = "vex", name = "vexDisplayForegroundColor")
         public static native void vexDisplayForegroundColor(int color);
 
+        @Import(module = "vex", name = "vexDisplayBackgroundColor")
+        public static native void vexDisplayBackgroundColor(int color);
+
         @Import(module = "vex", name = "vexDisplayRectFill")
         public static native void vexDisplayRectFill(int x1, int y1, int x2, int y2);
+
+        @Import(module = "vex", name = "vexDisplayRectDraw")
+        public static native void vexDisplayRectDraw(int x1, int y1, int x2, int y2);
+
+        @Import(module = "vex", name = "vexDisplayCircleFill")
+        public static native void vexDisplayCircleFill(int xc, int yc, int radius);
+
+        @Import(module = "vex", name = "vexDisplayCircleDraw")
+        public static native void vexDisplayCircleDraw(int xc, int yc, int radius);
+
+        // Text functions
+
+        @Import(module = "vex", name = "vexDisplayStringWidthGet")
+        public static native int vexDisplayStringWidthGet(@NotNull String text);
+
+        @Import(module = "vex", name = "vexDisplayStringHeightGet")
+        public static native int vexDisplayStringHeightGet(@NotNull String text);
+
+        @Import(module = "vex", name = "vexDisplayPrintf")
+        public static native int vexDisplayPrintf(int xpos, int ypos, boolean bOpaque, @NotNull String text);
+
+        @Import(module = "vex", name = "vexDisplayString")
+        public static native int vexDisplayString(int nLineNumber, @NotNull String text);
+
+        @Import(module = "vex", name = "vexDisplayStringAt")
+        public static native int vexDisplayStringAt(int xpos, int ypos, @NotNull String text);
+
+        @Import(module = "vex", name = "vexDisplayBigString")
+        public static native int vexDisplayBigString(int nLineNumber, @NotNull String text);
+
+        @Import(module = "vex", name = "vexDisplayBigStringAt")
+        public static native int vexDisplayBigStringAt(int xpos, int ypos, @NotNull String text);
+
+        @Import(module = "vex", name = "vexDisplaySmallStringAt")
+        public static native int vexDisplaySmallStringAt(int xpos, int ypos, @NotNull String text);
+
+        @Import(module = "vex", name = "vexDisplayCenteredString")
+        public static native int vexDisplayCenteredString(int nLineNumber, @NotNull String text);
+
+        @Import(module = "vex", name = "vexDisplayBigCenteredString")
+        public static native int vexDisplayBigCenteredString(int nLineNumber, @NotNull String text);
     }
 
     @StaticInit
@@ -51,7 +101,7 @@ public final class VexSdk {
         public static final int V5_MAX_DEVICE_PORTS = 32;
 
         @Import(module = "vex", name = "vexControllerConnectionStatusGet")
-        private static native int vexDevicesGetNumber();
+        public static native int vexDevicesGetNumber();
 
         public static int vexDevicesGetNumberByType(@NotNull V5_DeviceType deviceType) {
             return vexDevicesGetNumberByTypeRaw(deviceType.value());

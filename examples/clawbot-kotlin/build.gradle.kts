@@ -4,8 +4,8 @@ plugins {
 }
 
 hydrozoa {
-    entrypoint = "dev.vexide.hydrozoa.clawbotkt.Main"
-    runtime = project.rootProject.layout.projectDirectory.file("runtime.bin")
+    entrypoint = "dev.vexide.hydrozoa.examples.clawbotkt.MainKt"
+    runtime = rootProject.layout.projectDirectory.file("hydrozoa.bin")
 }
 
 kotlin {
