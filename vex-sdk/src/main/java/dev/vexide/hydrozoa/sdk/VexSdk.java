@@ -48,28 +48,28 @@ public final class VexSdk {
         public static native int vexDisplayStringHeightGet(@NotNull String text);
 
         @Import(module = "vex", name = "vexDisplayPrintf")
-        public static native int vexDisplayPrintf(int xpos, int ypos, boolean bOpaque, @NotNull String text);
+        public static native void vexDisplayPrintf(int xpos, int ypos, boolean bOpaque, @NotNull String text);
 
         @Import(module = "vex", name = "vexDisplayString")
-        public static native int vexDisplayString(int nLineNumber, @NotNull String text);
+        public static native void vexDisplayString(int nLineNumber, @NotNull String text);
 
         @Import(module = "vex", name = "vexDisplayStringAt")
-        public static native int vexDisplayStringAt(int xpos, int ypos, @NotNull String text);
+        public static native void vexDisplayStringAt(int xpos, int ypos, @NotNull String text);
 
         @Import(module = "vex", name = "vexDisplayBigString")
-        public static native int vexDisplayBigString(int nLineNumber, @NotNull String text);
+        public static native void vexDisplayBigString(int nLineNumber, @NotNull String text);
 
         @Import(module = "vex", name = "vexDisplayBigStringAt")
-        public static native int vexDisplayBigStringAt(int xpos, int ypos, @NotNull String text);
+        public static native void vexDisplayBigStringAt(int xpos, int ypos, @NotNull String text);
 
         @Import(module = "vex", name = "vexDisplaySmallStringAt")
-        public static native int vexDisplaySmallStringAt(int xpos, int ypos, @NotNull String text);
+        public static native void vexDisplaySmallStringAt(int xpos, int ypos, @NotNull String text);
 
         @Import(module = "vex", name = "vexDisplayCenteredString")
-        public static native int vexDisplayCenteredString(int nLineNumber, @NotNull String text);
+        public static native void vexDisplayCenteredString(int nLineNumber, @NotNull String text);
 
         @Import(module = "vex", name = "vexDisplayBigCenteredString")
-        public static native int vexDisplayBigCenteredString(int nLineNumber, @NotNull String text);
+        public static native void vexDisplayBigCenteredString(int nLineNumber, @NotNull String text);
     }
 
     @StaticInit
