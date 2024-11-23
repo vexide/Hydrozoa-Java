@@ -49,9 +49,9 @@ public record Text(@NotNull String text, @NotNull Size size, int x, int y, HAlig
         return VexSdk.Display.vexDisplayStringWidthGet(text);
     }
 
-    public void draw(@NotNull Display display, @NotNull Rgb fgColor, @NotNull Rgb bgColor) {
-        VexSdk.Display.vexDisplayForegroundColor(fgColor.toInteger());
-        VexSdk.Display.vexDisplayBackgroundColor(bgColor.toInteger());
+    public void draw(@NotNull Display display, @NotNull Color fgColor, @NotNull Color bgColor) {
+        VexSdk.Display.vexDisplayForegroundColor(fgColor.raw());
+        VexSdk.Display.vexDisplayBackgroundColor(bgColor.raw());
 
         var x = switch (hAlign) {
             case Left -> this.x;

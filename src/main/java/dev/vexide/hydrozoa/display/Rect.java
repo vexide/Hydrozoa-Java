@@ -16,8 +16,8 @@ public record Rect(int x1, int y1, int x2, int y2) implements Shape {
     }
 
     @Override
-    public void draw(@NotNull Display screen, @NotNull Rgb color, boolean fill) {
-        VexSdk.Display.vexDisplayForegroundColor(color.toInteger());
+    public void draw(@NotNull Display screen, @NotNull Color color, boolean fill) {
+        VexSdk.Display.vexDisplayForegroundColor(color.raw());
         if (fill) {
             VexSdk.Display.vexDisplayRectFill(x1, y1 + Display.HEADER_HEIGHT, x2, y2 + Display.HEADER_HEIGHT);
         } else {

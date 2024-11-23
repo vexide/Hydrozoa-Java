@@ -11,8 +11,8 @@ public record Circle(int x, int y, int radius) implements Shape {
     }
 
     @Override
-    public void draw(@NotNull Display screen, @NotNull Rgb color, boolean fill) {
-        VexSdk.Display.vexDisplayForegroundColor(color.toInteger());
+    public void draw(@NotNull Display screen, @NotNull Color color, boolean fill) {
+        VexSdk.Display.vexDisplayForegroundColor(color.raw());
         if (fill) {
             VexSdk.Display.vexDisplayCircleFill(x, y + Display.HEADER_HEIGHT, radius);
         } else {

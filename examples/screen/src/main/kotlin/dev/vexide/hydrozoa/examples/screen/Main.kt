@@ -2,8 +2,8 @@ package dev.vexide.hydrozoa.examples.screen
 
 import dev.vexide.hydrozoa.Peripherals
 import dev.vexide.hydrozoa.Platform
+import dev.vexide.hydrozoa.display.Color
 import dev.vexide.hydrozoa.display.Rect
-import dev.vexide.hydrozoa.display.Rgb
 import dev.vexide.hydrozoa.display.Text
 
 fun main() {
@@ -11,11 +11,11 @@ fun main() {
     val display = peripherals.takeDisplay()
 
     val rect = Rect(20, 20, 100, 100)
-    display.fill(rect, Rgb.fromInteger(0xFFFFFF))
-    display.stroke(rect, Rgb.fromInteger(0xFF00FF))
+    display.fill(rect, Color.WHITE)
+    display.stroke(rect, Color.FUCHSIA)
 
     val text = Text("Nice to see you!", 80, 80)
-    display.write(text, Rgb.fromInteger(0x00FFFF), Rgb.fromInteger(0x000000))
+    display.write(text, Color.OLIVE, Color.TRANSPARENT)
 
     while (true) {
         Platform.yield()

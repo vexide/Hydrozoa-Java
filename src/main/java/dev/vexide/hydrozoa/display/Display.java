@@ -30,19 +30,19 @@ public class Display {
         }
     }
 
-    public void draw(@NotNull Shape shape, @NotNull Rgb color, boolean fill) {
+    public void draw(@NotNull Shape shape, @NotNull Color color, boolean fill) {
         shape.draw(this, color, fill);
     }
 
-    public void fill(@NotNull Shape shape, @NotNull Rgb color) {
+    public void fill(@NotNull Shape shape, @NotNull Color color) {
         shape.draw(this, color, true);
     }
 
-    public void stroke(@NotNull Shape shape, @NotNull Rgb color) {
+    public void stroke(@NotNull Shape shape, @NotNull Color color) {
         shape.draw(this, color, false);
     }
 
-    public void write(@NotNull Text text, @NotNull Rgb fgColor, @NotNull Rgb bgColor) {
+    public void write(@NotNull Text text, @NotNull Color fgColor, @NotNull Color bgColor) {
         text.draw(this, fgColor, bgColor);
     }
 
