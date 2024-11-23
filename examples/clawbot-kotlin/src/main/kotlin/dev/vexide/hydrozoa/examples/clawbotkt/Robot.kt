@@ -43,7 +43,7 @@ class Robot(peripherals: Peripherals) : CompetitionRobot {
             } else if (input.r2.pressed) {
                 claw.target = Voltage(-6.0)
             } else {
-                arm.target = Brake(BrakeMode.Hold)
+                claw.target = Brake(BrakeMode.Hold)
             }
         } catch (err: DeviceException) {
             throw RuntimeException(err)
