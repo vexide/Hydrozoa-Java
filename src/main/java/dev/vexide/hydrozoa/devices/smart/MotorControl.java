@@ -20,6 +20,7 @@ public abstract class MotorControl {
 
         /**
          * Creates a new voltage control request.
+         *
          * @param voltage the voltage to set the motor to
          */
         public Voltage(double voltage) {
@@ -28,6 +29,7 @@ public abstract class MotorControl {
 
         /**
          * Gets the voltage that this control request will set the motor to.
+         *
          * @return the voltage
          */
         public double getVoltage() {
@@ -54,6 +56,7 @@ public abstract class MotorControl {
 
         /**
          * Creates a new velocity control request.
+         *
          * @param rpm the desired speed of the motor during the movement operation, in rotations per minute
          */
         public Velocity(int rpm) {
@@ -62,6 +65,7 @@ public abstract class MotorControl {
 
         /**
          * Gets the desired speed of the motor during the movement operation.
+         *
          * @return the speed, in rotations per minute
          */
         public int getRpm() {
@@ -84,6 +88,7 @@ public abstract class MotorControl {
 
         /**
          * Creates a new position control request.
+         *
          * @param position the desired position of the motor after the movement operation
          * @param velocity the maximum desired speed of the motor during the movement operation, in rotations per minute
          */
@@ -94,6 +99,7 @@ public abstract class MotorControl {
 
         /**
          * Gets the desired position of the motor after the movement operation.
+         *
          * @return the position
          */
         public @NotNull EncoderPosition getPosition() {
@@ -102,6 +108,7 @@ public abstract class MotorControl {
 
         /**
          * Gets the maximum speed of the motor during the movement operation.
+         *
          * @return the speed, in rotations per minute
          */
         public int getVelocity() {
@@ -127,6 +134,7 @@ public abstract class MotorControl {
 
         /**
          * Creates a new brake control request.
+         *
          * @param mode the brake mode to use when stopping the motor
          */
         public Brake(@NotNull Motor.BrakeMode mode) {
@@ -135,6 +143,7 @@ public abstract class MotorControl {
 
         /**
          * Gets the brake mode that this control request will use when stopping the motor.
+         *
          * @return the brake mode
          */
         public @NotNull Motor.BrakeMode getMode() {

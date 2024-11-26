@@ -21,10 +21,11 @@ public final class SmartPort {
     private final int number;
 
     /**
-     * Create a new Smart Port.
+     * Creates a new Smart Port.
      *
      * @param ignoredKey the peripherals key, which may only be accessed from within the {@link Peripherals} class
      * @param number     the port number of the smart port
+     * @see Peripherals#takePort(int)
      */
     @ApiStatus.Internal
     public SmartPort(Peripherals.Key ignoredKey, int number) {
@@ -32,7 +33,7 @@ public final class SmartPort {
     }
 
     /**
-     * Get the port number of this smart port.
+     * Gets the port number of this smart port.
      * @return the port number, as labeled on the robot brain
      */
     @Contract(pure = true)
@@ -41,7 +42,7 @@ public final class SmartPort {
     }
 
     /**
-     * Get the zero-indexed port number of this smart port.
+     * Gets the zero-indexed port number of this smart port.
      * @return the zero-indexed port number
      */
     @Contract(pure = true)
@@ -50,7 +51,7 @@ public final class SmartPort {
     }
 
     /**
-     * Get the underlying device handle for this smart port so that it can be passed to the {@link VexSdk}.
+     * Gets the underlying device handle for this smart port so that it can be passed to the {@link VexSdk}.
      * @return the device's SDK handle
      */
     @Contract(" -> new")
@@ -60,7 +61,7 @@ public final class SmartPort {
     }
 
     /**
-     * Get the type of device currently physically connected to this smart port.
+     * Gets the type of device currently physically connected to this smart port.
      * @return the device's type, if a device is connected
      */
     public Optional<SmartDevice.Type> deviceType() {
@@ -71,7 +72,7 @@ public final class SmartPort {
     }
 
     /**
-     * Validate that the device physically connected to this port is of the expected type.
+     * Validates that the device physically connected to this port is of the expected type.
      * @param expected the expected device type
      * @throws DeviceException if the device is not connected or the wrong device is connected
      */

@@ -16,8 +16,9 @@ public record EncoderPosition(long raw) {
 
     /**
      * Creates a new encoder position using a number of ticks.
+     *
      * @param ticks the number of ticks the encoder has counted
-     * @param tpr the number of ticks which represent one full rotation of the encoder
+     * @param tpr   the number of ticks which represent one full rotation of the encoder
      * @return the new encoder position
      */
     @Contract(value = "_, _ -> new", pure = true)
@@ -27,6 +28,7 @@ public record EncoderPosition(long raw) {
 
     /**
      * Creates a new encoder position using a number of degrees.
+     *
      * @param degrees the number of degrees the encoder has rotated
      * @return the new encoder position
      */
@@ -37,6 +39,7 @@ public record EncoderPosition(long raw) {
 
     /**
      * Creates a new encoder position using a number of radians.
+     *
      * @param radians the number of radians the encoder has rotated
      * @return the new encoder position
      */
@@ -47,6 +50,7 @@ public record EncoderPosition(long raw) {
 
     /**
      * Creates a new encoder position using a number of rotations.
+     *
      * @param rotations the number of full rotations the encoder has completed
      * @return the new encoder position
      */
@@ -57,6 +61,7 @@ public record EncoderPosition(long raw) {
 
     /**
      * Converts the encoder position to a number of ticks at a given TPR ratio.
+     *
      * @param tpr the number of ticks which represent one full rotation of the encoder
      * @return the number of ticks the encoder has counted
      */
@@ -67,6 +72,7 @@ public record EncoderPosition(long raw) {
 
     /**
      * Converts the encoder position to a number of degrees.
+     *
      * @return the number of degrees the encoder has rotated
      */
     @Contract(pure = true)
@@ -76,6 +82,7 @@ public record EncoderPosition(long raw) {
 
     /**
      * Converts the encoder position to a number of radians.
+     *
      * @return the number of radians the encoder has rotated
      */
     @Contract(pure = true)
@@ -85,6 +92,7 @@ public record EncoderPosition(long raw) {
 
     /**
      * Converts the encoder position to a number of full rotations.
+     *
      * @return the number of full rotations the encoder has completed
      */
     @Contract(pure = true)
@@ -94,6 +102,7 @@ public record EncoderPosition(long raw) {
 
     /**
      * Adds two encoder positions together.
+     *
      * @param other the other encoder position
      * @return the sum of the two encoder positions
      */
@@ -104,6 +113,7 @@ public record EncoderPosition(long raw) {
 
     /**
      * Subtracts one encoder position from another.
+     *
      * @param other the other encoder position
      * @return the difference of the two encoder positions
      */
@@ -114,6 +124,7 @@ public record EncoderPosition(long raw) {
 
     /**
      * Multiplies an encoder position by a scalar.
+     *
      * @param scalar the scalar to multiply by
      * @return the product of the encoder position and the scalar
      */
@@ -124,6 +135,7 @@ public record EncoderPosition(long raw) {
 
     /**
      * Divides an encoder position by a scalar.
+     *
      * @param scalar the scalar to divide by
      * @return the quotient of the encoder position and the scalar
      */
@@ -145,6 +157,7 @@ public record EncoderPosition(long raw) {
 
     /**
      * Computes the floor modulus of dividing an encoder position by a scalar.
+     *
      * @param scalar the scalar to divide by
      * @return the floor modulus of the division
      * @see Math#floorMod(int, int)
@@ -156,6 +169,7 @@ public record EncoderPosition(long raw) {
 
     /**
      * Computes the absolute value of the encoder position.
+     *
      * @return the absolute value of the encoder position
      */
     @Contract(pure = true)
@@ -165,6 +179,7 @@ public record EncoderPosition(long raw) {
 
     /**
      * Computes the negation of the encoder position.
+     *
      * @return the negation of the encoder position
      */
     @Contract(pure = true)
@@ -174,6 +189,7 @@ public record EncoderPosition(long raw) {
 
     /**
      * Compares two encoder positions numerically.
+     *
      * @param other the other encoder position
      * @return the value {@code 0} if {@code this = other}; a value less than {@code 0} if {@code this < other}; and a
      * value greater than {@code 0} if {@code this > other}

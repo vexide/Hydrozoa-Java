@@ -46,6 +46,7 @@ public class Motor extends SmartDevice {
 
     /**
      * Gets the gearset of this motor.
+     *
      * @return the gearset
      */
     public @NotNull Gearset getGearset() {
@@ -54,6 +55,7 @@ public class Motor extends SmartDevice {
 
     /**
      * Sets the gearset of this motor.
+     *
      * @param gearset the new gearset
      */
     public void setGearset(@NotNull Gearset gearset) {
@@ -63,6 +65,7 @@ public class Motor extends SmartDevice {
 
     /**
      * Gets the direction of this motor.
+     *
      * @return the direction
      */
     public @NotNull Direction getDirection() {
@@ -71,6 +74,7 @@ public class Motor extends SmartDevice {
 
     /**
      * Sets the direction of this motor.
+     *
      * @param direction the new direction
      */
     public void setDirection(@NotNull Direction direction) {
@@ -80,6 +84,7 @@ public class Motor extends SmartDevice {
 
     /**
      * Applies a voltage control request to the motor.
+     *
      * @param voltage the desired voltage to apply, in volts
      * @throws DeviceException if the motor is not connected or the robot is disabled
      * @see MotorControl.Voltage
@@ -113,6 +118,7 @@ public class Motor extends SmartDevice {
 
     /**
      * Removes power from the motor and applies a specified brake mode to stop it.
+     *
      * @param mode the brake mode to use when stopping the motor
      * @throws DeviceException if the motor is not connected or the robot is disabled
      * @see MotorControl.Brake
@@ -123,6 +129,7 @@ public class Motor extends SmartDevice {
 
     /**
      * Gets the last control request applied to the motor.
+     *
      * @return the last control request
      */
     public @NotNull MotorControl getTarget() {
@@ -131,6 +138,7 @@ public class Motor extends SmartDevice {
 
     /**
      * Applies a control request to the motor.
+     *
      * @param target the control request to apply
      * @throws DeviceException if the motor is not connected or the robot is disabled
      */
@@ -166,6 +174,7 @@ public class Motor extends SmartDevice {
 
         /**
          * Gets the internal representation of the gearset.
+         *
          * @return the raw gearset value
          */
         @Contract(pure = true)
@@ -175,6 +184,7 @@ public class Motor extends SmartDevice {
 
         /**
          * Gets the number of encoder ticks per revolution of a motor with this gearset.
+         *
          * @return the number of ticks per revolution
          */
         @Contract(pure = true)
@@ -188,6 +198,7 @@ public class Motor extends SmartDevice {
 
         /**
          * Gets the maximum RPM of a motor with this gearset.
+         *
          * @return the maximum RPM
          */
         @Contract(pure = true)
@@ -215,6 +226,7 @@ public class Motor extends SmartDevice {
 
         /**
          * Gets the inverse direction of this direction.
+         *
          * @return the inverse direction
          */
         @Contract(pure = true)
@@ -251,6 +263,7 @@ public class Motor extends SmartDevice {
 
         /**
          * Gets the internal representation of the brake mode.
+         *
          * @return the raw brake mode value
          */
         @Contract(pure = true)

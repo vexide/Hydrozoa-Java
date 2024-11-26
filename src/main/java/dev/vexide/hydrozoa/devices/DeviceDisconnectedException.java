@@ -8,7 +8,7 @@ import dev.vexide.hydrozoa.devices.smart.SmartDevice;
  */
 public class DeviceDisconnectedException extends DeviceException {
     /**
-     * Create a new {@code DeviceDisconnectedException}.
+     * Creates a new {@code DeviceDisconnectedException}.
      *
      * @param port the port number
      * @param type the expected device type

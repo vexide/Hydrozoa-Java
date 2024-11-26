@@ -22,7 +22,7 @@ public abstract class SmartDevice {
     final @NotNull V5_Device handle;
 
     /**
-     * Create a new generic smart device.
+     * Creates a new generic smart device.
      *
      * @param port the smart port which this device is connected to
      */
@@ -33,6 +33,7 @@ public abstract class SmartDevice {
 
     /**
      * Gets the port number of this smart device.
+     *
      * @return the port number, as labeled on the robot brain
      */
     public int getPortNumber() {
@@ -50,6 +51,7 @@ public abstract class SmartDevice {
 
     /**
      * Gets the category of smart device this object represents.
+     *
      * @return the device type
      */
     public abstract @NotNull Type getDeviceType();
@@ -59,7 +61,8 @@ public abstract class SmartDevice {
      * <p>
      * A device is considered connected if the {@link #getDeviceType expected} device type matches the actual device
      * type.
-     * @return <code>true</code> if the device is connected, <code>false</code> otherwise
+     *
+     * @return {@code true} if the device is connected, {@code false} otherwise
      */
     public boolean isConnected() {
         return port.deviceType().equals(Optional.of(getDeviceType()));
@@ -67,6 +70,7 @@ public abstract class SmartDevice {
 
     /**
      * Validates that the correct device is physically connected to this device's port.
+     *
      * @throws DeviceException if the device is not connected or the wrong device is connected
      */
     public void validateConnection() throws DeviceException {
@@ -146,6 +150,7 @@ public abstract class SmartDevice {
 
         /**
          * Converts a numeric raw V5 device type to a high-level device type.
+         *
          * @param raw the raw device type
          * @return the high-level device type, or an empty optional if the raw type is not recognized
          */
@@ -172,6 +177,7 @@ public abstract class SmartDevice {
 
         /**
          * Gets the internal representation of the smart device type.
+         *
          * @return the raw device type
          */
         public V5_DeviceType getRaw() {
