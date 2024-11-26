@@ -1,9 +1,9 @@
 package dev.vexide.hydrozoa.examples.clawbotkt
 
 import dev.vexide.hydrozoa.CompetitionRobot
-import dev.vexide.hydrozoa.Controller
+import dev.vexide.hydrozoa.DeviceException
 import dev.vexide.hydrozoa.Peripherals
-import dev.vexide.hydrozoa.devices.DeviceException
+import dev.vexide.hydrozoa.devices.Controller
 import dev.vexide.hydrozoa.devices.smart.Motor
 import dev.vexide.hydrozoa.devices.smart.Motor.BrakeMode
 import dev.vexide.hydrozoa.devices.smart.MotorControl.Brake

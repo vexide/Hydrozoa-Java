@@ -1,6 +1,7 @@
 plugins {
     `java-library`
     `maven-publish`
+    idea
 
     id("org.teavm.library").version("0.10.2")
     id("dev.vexide.hydrozoa").apply(false)
@@ -47,6 +48,7 @@ publishing {
 allprojects {
     plugins.apply("maven-publish")
     plugins.apply("java")
+
     publishing {
         repositories {
             maven {
@@ -65,6 +67,18 @@ allprojects {
     repositories {
         mavenCentral()
     }
+
+    tasks.javadoc {
+        source = sourceSets.main.get().allJava
+        options
+            .windowTitle("Hydrozoa Docs")
+            .stylesheetFile(rootProject.layout.projectDirectory.file("docs.css").asFile)
+    }
+}
+
+subprojects {
+    group = project.rootProject.group
+    version = project.rootProject.version
 }
 
 jreleaser {
@@ -85,13 +99,19 @@ jreleaser {
     }
 }
 
-subprojects {
-    group = project.rootProject.group
-    version = project.rootProject.version
-}
-
 dependencies {
     implementation("org.jetbrains:annotations:24.0.0")
 
     implementation(project(":vex-sdk"))
+}
+
+tasks.javadoc {
+    title = "Hydrozoa"
+}
+
+idea {
+    module {
+        isDownloadJavadoc = true
+        isDownloadSources = true
+    }
 }

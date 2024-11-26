@@ -1,6 +1,5 @@
 package dev.vexide.hydrozoa;
 
-import dev.vexide.hydrozoa.devices.DeviceException;
 import dev.vexide.hydrozoa.sdk.VexSdk;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;

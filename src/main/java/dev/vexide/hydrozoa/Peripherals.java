@@ -1,5 +1,6 @@
 package dev.vexide.hydrozoa;
 
+import dev.vexide.hydrozoa.devices.Controller;
 import dev.vexide.hydrozoa.devices.smart.SmartPort;
 import dev.vexide.hydrozoa.display.Display;
 import org.jetbrains.annotations.Contract;
@@ -14,8 +15,8 @@ public class Peripherals {
     private static Peripherals instance = new Peripherals();
 
     private final @Nullable SmartPort[] ports = new SmartPort[21];
-    private @Nullable Controller primaryController = new Controller(Controller.Id.Primary);
-    private @Nullable Controller partnerController = new Controller(Controller.Id.Partner);
+    private @Nullable Controller primaryController = new Controller(key, Controller.Id.Primary);
+    private @Nullable Controller partnerController = new Controller(key, Controller.Id.Partner);
     private @Nullable Display display = new Display(key);
 
     private Peripherals() {

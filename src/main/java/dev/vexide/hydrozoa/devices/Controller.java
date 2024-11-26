@@ -1,9 +1,12 @@
-package dev.vexide.hydrozoa;
+package dev.vexide.hydrozoa.devices;
 
+import dev.vexide.hydrozoa.CompetitionRuntime;
+import dev.vexide.hydrozoa.Peripherals;
 import dev.vexide.hydrozoa.sdk.V5_ControllerId;
 import dev.vexide.hydrozoa.sdk.V5_ControllerIndex;
 import dev.vexide.hydrozoa.sdk.V5_ControllerStatus;
 import dev.vexide.hydrozoa.sdk.VexSdk;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
@@ -13,7 +16,8 @@ public class Controller {
     private final @NotNull Id id;
     private @NotNull State previousState = State.empty();
 
-    Controller(@NotNull Id type) {
+    @ApiStatus.Internal
+    public Controller(@NotNull Peripherals.Key ignoredKey, @NotNull Id type) {
         this.id = type;
     }
 

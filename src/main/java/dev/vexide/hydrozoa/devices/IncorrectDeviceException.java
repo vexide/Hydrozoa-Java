@@ -1,5 +1,6 @@
 package dev.vexide.hydrozoa.devices;
 
+import dev.vexide.hydrozoa.DeviceException;
 import dev.vexide.hydrozoa.devices.smart.SmartDevice;
 
 public class IncorrectDeviceException extends DeviceException {

@@ -43,9 +43,12 @@ publishing {
     }
 }
 
-
 dependencies {
     implementation("org.jetbrains:annotations:24.0.0")
 
     implementation(teavm.libs.interop)
+}
+
+tasks.javadoc {
+    title = "VEX SDK"
 }
