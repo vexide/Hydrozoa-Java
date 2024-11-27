@@ -14,8 +14,11 @@ fun main() {
     display.fill(rect, Color.WHITE)
     display.stroke(rect, Color.FUCHSIA)
 
-    val text = Text("Nice to see you!", 80, 80)
+    var text = Text("Nice to see you!", 80, 40)
     display.draw(text, Color.OLIVE)
+
+    text = Text("This is Hydrozoa.", 80, 80)
+    display.draw(text, Color.AQUA, Color.OLIVE)
 
     while (true) {
         Platform.yield()
