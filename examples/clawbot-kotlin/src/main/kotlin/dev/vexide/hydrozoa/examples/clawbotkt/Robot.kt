@@ -10,10 +10,10 @@ import dev.vexide.hydrozoa.devices.smart.MotorControl.Brake
 import dev.vexide.hydrozoa.devices.smart.MotorControl.Voltage
 
 class Robot(peripherals: Peripherals) : CompetitionRobot {
-    private val leftMotor = Motor(peripherals.takePort(2), Motor.Gearset.Green, Motor.Direction.Forward)
-    private val rightMotor = Motor(peripherals.takePort(8), Motor.Gearset.Green, Motor.Direction.Forward)
-    private val claw = Motor(peripherals.takePort(9), Motor.Gearset.Green, Motor.Direction.Reverse)
-    private val arm = Motor(peripherals.takePort(7), Motor.Gearset.Green, Motor.Direction.Reverse)
+    private val leftMotor = Motor(peripherals.takePort(2), Motor.Gearset.Green, Motor.Direction.FORWARD)
+    private val rightMotor = Motor(peripherals.takePort(8), Motor.Gearset.Green, Motor.Direction.FORWARD)
+    private val claw = Motor(peripherals.takePort(9), Motor.Gearset.Green, Motor.Direction.REVERSE)
+    private val arm = Motor(peripherals.takePort(7), Motor.Gearset.Green, Motor.Direction.REVERSE)
 
     private val controller = peripherals.takeController(Controller.Id.Primary)
 
@@ -35,7 +35,7 @@ class Robot(peripherals: Peripherals) : CompetitionRobot {
             } else if (input.r1.pressed) {
                 arm.target = Voltage(-6.0)
             } else {
-                arm.target = Brake(BrakeMode.Hold)
+                arm.target = Brake(BrakeMode.HOLD)
             }
 
             if (input.l2.pressed) {
@@ -43,7 +43,7 @@ class Robot(peripherals: Peripherals) : CompetitionRobot {
             } else if (input.r2.pressed) {
                 claw.target = Voltage(-6.0)
             } else {
-                claw.target = Brake(BrakeMode.Hold)
+                claw.target = Brake(BrakeMode.HOLD)
             }
         } catch (err: DeviceException) {
             throw RuntimeException(err)

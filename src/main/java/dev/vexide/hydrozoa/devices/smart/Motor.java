@@ -35,13 +35,13 @@ public class Motor extends SmartDevice {
         this.direction = direction;
 
         VexSdk.Motor.vexDeviceMotorEncoderUnitsSet(handle, V5MotorEncoderUnits.Counts);
-        VexSdk.Motor.vexDeviceMotorReverseFlagSet(handle, direction.equals(Direction.Reverse));
+        VexSdk.Motor.vexDeviceMotorReverseFlagSet(handle, direction.equals(Direction.REVERSE));
         VexSdk.Motor.vexDeviceMotorGearingSet(handle, gearset.getRaw());
     }
 
     @Override
     public @NotNull Type getDeviceType() {
-        return Type.Motor;
+        return Type.MOTOR;
     }
 
     /**
@@ -79,7 +79,7 @@ public class Motor extends SmartDevice {
      */
     public void setDirection(@NotNull Direction direction) {
         this.direction = direction;
-        VexSdk.Motor.vexDeviceMotorReverseFlagSet(handle, direction.equals(Direction.Reverse));
+        VexSdk.Motor.vexDeviceMotorReverseFlagSet(handle, direction.equals(Direction.REVERSE));
     }
 
     /**
@@ -218,11 +218,11 @@ public class Motor extends SmartDevice {
         /**
          * The forward direction; positive voltage causes the motor to spin clockwise.
          */
-        Forward,
+        FORWARD,
         /**
          * The reverse direction; positive voltage causes the motor to spin counterclockwise.
          */
-        Reverse;
+        REVERSE;
 
         /**
          * Gets the inverse direction of this direction.
@@ -232,8 +232,8 @@ public class Motor extends SmartDevice {
         @Contract(pure = true)
         public @NotNull Direction not() {
             return switch (this) {
-                case Forward -> Reverse;
-                case Reverse -> Forward;
+                case FORWARD -> REVERSE;
+                case REVERSE -> FORWARD;
             };
         }
     }
@@ -245,15 +245,15 @@ public class Motor extends SmartDevice {
         /**
          * The motor does not actively brake, allowing it to coast to a stop.
          */
-        Coast(V5MotorBrakeMode.Coast),
+        COAST(V5MotorBrakeMode.Coast),
         /**
          * The motor uses regenerative braking to slow down faster.
          */
-        Brake(V5MotorBrakeMode.Brake),
+        BRAKE(V5MotorBrakeMode.Brake),
         /**
          * The motor uses its internal PID controller to hold its current position.
          */
-        Hold(V5MotorBrakeMode.Hold);
+        HOLD(V5MotorBrakeMode.Hold);
 
         private final V5MotorBrakeMode raw;
 

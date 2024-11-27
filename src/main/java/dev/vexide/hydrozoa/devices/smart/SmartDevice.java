@@ -84,63 +84,63 @@ public abstract class SmartDevice {
         /**
          * A VEX V5 Smart Motor.
          */
-        Motor(V5_DeviceType.MotorSensor),
+        MOTOR(V5_DeviceType.MotorSensor),
         /**
          * A VEX Rotation Sensor.
          */
-        Rotation(V5_DeviceType.AbsEncSensor),
+        ROTATION(V5_DeviceType.AbsEncSensor),
         /**
          * A VEX Inertial Sensor.
          */
-        Imu(V5_DeviceType.ImuSensor),
+        IMU(V5_DeviceType.ImuSensor),
         /**
          * A VEX Distance Sensor.
          */
-        Distance(V5_DeviceType.DistanceSensor),
+        DISTANCE(V5_DeviceType.DistanceSensor),
         /**
          * A VEX Vision Sensor.
          */
-        Vision(V5_DeviceType.VisionSensor),
+        VISION(V5_DeviceType.VisionSensor),
         /**
          * A VEX AI Vision Sensor.
          */
-        AiVision(V5_DeviceType.AiVisionSensor),
+        AI_VISION(V5_DeviceType.AiVisionSensor),
         /**
          * A VEX Electromagnet.
          */
-        Electromagnet(V5_DeviceType.MagnetSensor),
+        ELECTROMAGNET(V5_DeviceType.MagnetSensor),
         /**
          * A VEX CTE Workcell Signal Tower.
          */
-        LightTower(V5_DeviceType.LightTowerSensor),
+        LIGHT_TOWER(V5_DeviceType.LightTowerSensor),
         /**
          * A VEX CTE Workcell 6-Axis Arm.
          */
-        Arm(V5_DeviceType.ArmDevice),
+        ARM(V5_DeviceType.ArmDevice),
         /**
          * A VEX Optical Sensor.
          */
-        Optical(V5_DeviceType.OpticalSensor),
+        OPTICAL(V5_DeviceType.OpticalSensor),
         /**
          * A VEX V5 Game Positioning System Sensor.
          */
-        Gps(V5_DeviceType.GpsSensor),
+        GPS(V5_DeviceType.GpsSensor),
         /**
          * A VEX V5 Robot Radio.
          */
-        Radio(V5_DeviceType.RadioSensor),
+        RADIO(V5_DeviceType.RadioSensor),
         /**
          * A VEX Analog/Digital Input Sensor.
          */
-        Adi(V5_DeviceType.AdiSensor),
+        ADI(V5_DeviceType.AdiSensor),
         /**
          * A generic, unbranded serial device.
          */
-        GenericSerial(V5_DeviceType.GenericSerial),
+        GENERIC_SERIAL(V5_DeviceType.GenericSerial),
         /**
          * An unknown device type.
          */
-        Unknown(V5_DeviceType.UndefinedSensor);
+        UNKNOWN(V5_DeviceType.UndefinedSensor);
 
         private final V5_DeviceType raw;
 
@@ -157,21 +157,21 @@ public abstract class SmartDevice {
         public static Optional<Type> fromRaw(@NotNull V5_DeviceType raw) {
             return switch (raw.value()) {
                 case V5_DeviceType.kDeviceTypeNoSensor -> Optional.empty();
-                case V5_DeviceType.kDeviceTypeMotorSensor -> Optional.of(Motor);
-                case V5_DeviceType.kDeviceTypeAbsEncSensor -> Optional.of(Rotation);
-                case V5_DeviceType.kDeviceTypeImuSensor -> Optional.of(Imu);
-                case V5_DeviceType.kDeviceTypeDistanceSensor -> Optional.of(Distance);
-                case V5_DeviceType.kDeviceTypeVisionSensor -> Optional.of(Vision);
-                case V5_DeviceType.kDeviceTypeAiVisionSensor -> Optional.of(AiVision);
-                case V5_DeviceType.kDeviceTypeMagnetSensor -> Optional.of(Electromagnet);
-                case V5_DeviceType.kDeviceTypeLightTowerSensor -> Optional.of(LightTower);
-                case V5_DeviceType.kDeviceTypeArmDevice -> Optional.of(Arm);
-                case V5_DeviceType.kDeviceTypeOpticalSensor -> Optional.of(Optical);
-                case V5_DeviceType.kDeviceTypeGpsSensor -> Optional.of(Gps);
-                case V5_DeviceType.kDeviceTypeRadioSensor -> Optional.of(Radio);
-                case V5_DeviceType.kDeviceTypeAdiSensor -> Optional.of(Adi);
-                case V5_DeviceType.kDeviceTypeGenericSerial -> Optional.of(GenericSerial);
-                default -> Optional.of(Unknown);
+                case V5_DeviceType.kDeviceTypeMotorSensor -> Optional.of(MOTOR);
+                case V5_DeviceType.kDeviceTypeAbsEncSensor -> Optional.of(ROTATION);
+                case V5_DeviceType.kDeviceTypeImuSensor -> Optional.of(IMU);
+                case V5_DeviceType.kDeviceTypeDistanceSensor -> Optional.of(DISTANCE);
+                case V5_DeviceType.kDeviceTypeVisionSensor -> Optional.of(VISION);
+                case V5_DeviceType.kDeviceTypeAiVisionSensor -> Optional.of(AI_VISION);
+                case V5_DeviceType.kDeviceTypeMagnetSensor -> Optional.of(ELECTROMAGNET);
+                case V5_DeviceType.kDeviceTypeLightTowerSensor -> Optional.of(LIGHT_TOWER);
+                case V5_DeviceType.kDeviceTypeArmDevice -> Optional.of(ARM);
+                case V5_DeviceType.kDeviceTypeOpticalSensor -> Optional.of(OPTICAL);
+                case V5_DeviceType.kDeviceTypeGpsSensor -> Optional.of(GPS);
+                case V5_DeviceType.kDeviceTypeRadioSensor -> Optional.of(RADIO);
+                case V5_DeviceType.kDeviceTypeAdiSensor -> Optional.of(ADI);
+                case V5_DeviceType.kDeviceTypeGenericSerial -> Optional.of(GENERIC_SERIAL);
+                default -> Optional.of(UNKNOWN);
             };
         }
 

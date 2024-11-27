@@ -15,7 +15,7 @@ fun main() {
     display.stroke(rect, Color.FUCHSIA)
 
     val text = Text("Nice to see you!", 80, 80)
-    display.write(text, Color.OLIVE, Color.TRANSPARENT)
+    display.draw(text, Color.OLIVE)
 
     while (true) {
         Platform.yield()

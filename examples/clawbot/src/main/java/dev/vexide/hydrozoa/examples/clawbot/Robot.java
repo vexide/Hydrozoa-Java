@@ -15,10 +15,10 @@ public class Robot implements CompetitionRobot {
     private final Controller controller;
 
     public Robot(Peripherals peripherals) {
-        leftMotor = new Motor(peripherals.takePort(2), Motor.Gearset.Green, Motor.Direction.Forward);
-        rightMotor = new Motor(peripherals.takePort(8), Motor.Gearset.Green, Motor.Direction.Forward);
-        claw = new Motor(peripherals.takePort(9), Motor.Gearset.Green, Motor.Direction.Reverse);
-        arm = new Motor(peripherals.takePort(7), Motor.Gearset.Green, Motor.Direction.Reverse);
+        leftMotor = new Motor(peripherals.takePort(2), Motor.Gearset.Green, Motor.Direction.FORWARD);
+        rightMotor = new Motor(peripherals.takePort(8), Motor.Gearset.Green, Motor.Direction.FORWARD);
+        claw = new Motor(peripherals.takePort(9), Motor.Gearset.Green, Motor.Direction.REVERSE);
+        arm = new Motor(peripherals.takePort(7), Motor.Gearset.Green, Motor.Direction.REVERSE);
         controller = peripherals.takeController(Controller.Id.Primary);
     }
 
@@ -42,7 +42,7 @@ public class Robot implements CompetitionRobot {
             } else if (input.r1().pressed()) {
                 arm.setVoltage(-6.0);
             } else {
-                arm.brake(Motor.BrakeMode.Hold);
+                arm.brake(Motor.BrakeMode.HOLD);
             }
 
             if (input.l2().pressed()) {
@@ -50,7 +50,7 @@ public class Robot implements CompetitionRobot {
             } else if (input.r2().pressed()) {
                 claw.setVoltage(-6.0);
             } else {
-                claw.brake(Motor.BrakeMode.Hold);
+                claw.brake(Motor.BrakeMode.HOLD);
             }
         } catch (DeviceException err) {
             throw new RuntimeException(err);

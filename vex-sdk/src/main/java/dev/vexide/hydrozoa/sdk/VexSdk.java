@@ -5,6 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import org.teavm.interop.Import;
 import org.teavm.interop.StaticInit;
 
+@SuppressWarnings("MissingJavadoc")
 @StaticInit
 public final class VexSdk {
     @Import(module = "vex", name = "vexTasksRun")
@@ -40,6 +41,12 @@ public final class VexSdk {
         public static native void vexDisplayCircleDraw(int xc, int yc, int radius);
 
         // Text functions
+
+        @Import(module = "vex", name = "vexDisplayTextSize")
+        public static native void vexDisplayTextSize(int n, int d);
+
+        @Import(module = "vex", name = "vexDisplayFontNamedSet")
+        public static native void vexDisplayFontNamedSet(@NotNull String pFontName);
 
         @Import(module = "vex", name = "vexDisplayStringWidthGet")
         public static native int vexDisplayStringWidthGet(@NotNull String text);
