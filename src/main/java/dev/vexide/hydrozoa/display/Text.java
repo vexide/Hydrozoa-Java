@@ -15,7 +15,7 @@ import org.jetbrains.annotations.Nullable;
  * @param hAlign the horizontal alignment of the text
  * @param vAlign the vertical alignment of the text
  */
-public record Text(@NotNull String text, @NotNull Font font, int x, int y, HAlign hAlign, VAlign vAlign) {
+public record Text(@NotNull String text, int x, int y, @NotNull Font font, HAlign hAlign, VAlign vAlign) {
     /**
      * Creates a new text widget with the given text, font, and position using the default alignment of left and top.
      *
@@ -24,8 +24,8 @@ public record Text(@NotNull String text, @NotNull Font font, int x, int y, HAlig
      * @param x    the x-coordinate of the text
      * @param y    the y-coordinate of the text
      */
-    public Text(@NotNull String text, @NotNull Font font, int x, int y) {
-        this(text, font, x, y, HAlign.LEFT, VAlign.Top);
+    public Text(@NotNull String text, int x, int y, @NotNull Font font) {
+        this(text, x, y, font, HAlign.LEFT, VAlign.Top);
     }
 
     /**
@@ -37,7 +37,7 @@ public record Text(@NotNull String text, @NotNull Font font, int x, int y, HAlig
      * @param y    the y-coordinate of the text
      */
     public Text(@NotNull String text, int x, int y) {
-        this(text, Font.DEFAULT, x, y, HAlign.LEFT, VAlign.Top);
+        this(text, x, y, Font.DEFAULT, HAlign.LEFT, VAlign.Top);
     }
 
     /**
@@ -48,7 +48,7 @@ public record Text(@NotNull String text, @NotNull Font font, int x, int y, HAlig
      */
     @Contract(value = "_ -> new", pure = true)
     public @NotNull Text withFont(@NotNull Font font) {
-        return new Text(text, font, x, y, hAlign, vAlign);
+        return new Text(text, x, y, font, hAlign, vAlign);
     }
 
 
@@ -61,7 +61,7 @@ public record Text(@NotNull String text, @NotNull Font font, int x, int y, HAlig
      */
     @Contract(value = "_, _ -> new", pure = true)
     public @NotNull Text withAlignment(@NotNull HAlign hAlign, @NotNull VAlign vAlign) {
-        return new Text(text, font, x, y, hAlign, vAlign);
+        return new Text(text, x, y, font, hAlign, vAlign);
     }
 
     /**
