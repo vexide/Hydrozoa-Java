@@ -34,6 +34,7 @@ public class Motor extends SmartDevice {
         this.gearset = gearset;
         this.direction = direction;
 
+        var handle = this.port.deviceHandle();
         VexSdk.Motor.vexDeviceMotorEncoderUnitsSet(handle, V5MotorEncoderUnits.Counts);
         VexSdk.Motor.vexDeviceMotorReverseFlagSet(handle, direction.equals(Direction.REVERSE));
         VexSdk.Motor.vexDeviceMotorGearingSet(handle, gearset.getRaw());
@@ -60,7 +61,7 @@ public class Motor extends SmartDevice {
      */
     public void setGearset(@NotNull Gearset gearset) {
         this.gearset = gearset;
-        VexSdk.Motor.vexDeviceMotorGearingSet(handle, gearset.getRaw());
+        VexSdk.Motor.vexDeviceMotorGearingSet(port.deviceHandle(), gearset.getRaw());
     }
 
     /**
@@ -79,7 +80,7 @@ public class Motor extends SmartDevice {
      */
     public void setDirection(@NotNull Direction direction) {
         this.direction = direction;
-        VexSdk.Motor.vexDeviceMotorReverseFlagSet(handle, direction.equals(Direction.REVERSE));
+        VexSdk.Motor.vexDeviceMotorReverseFlagSet(port.deviceHandle(), direction.equals(Direction.REVERSE));
     }
 
     /**

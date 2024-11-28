@@ -12,8 +12,8 @@
     --block-font-family: var(--body-font-family);
     --code-font-family: monospace;
     /* Base font sizes for body and code elements */
-    --body-font-size: 14px;
-    --code-font-size: 14px;
+    --body-font-size: 16px;
+    --code-font-size: 16px;
     /* Text colors for body and block elements */
     --body-text-color: #353833;
     --block-text-color: #474747;
@@ -921,12 +921,12 @@ li.ui-static-link a, li.ui-static-link a:visited {
 
 .search-tag-desc-result {
     font-style: italic;
-    font-size: 11px;
+    font-size: 16px;
 }
 
 .search-tag-holder-result {
     font-style: italic;
-    font-size: 12px;
+    font-size: 16px;
 }
 
 .search-tag-result:target {
@@ -1525,7 +1525,6 @@ body {
     background-color: #ffffff;
     color: #141414;
     font-family: 'Roboto', sans-serif;
-    font-size: 76%;
     margin: 0;
 }
 
@@ -1663,16 +1662,6 @@ section#field-summary, section#constructor-summary, section#method-summary, sect
     margin-left: -10px;
 }
 
-section#field-detail, section#constructor-detail, section#method-detail,
-#field-summary > div.caption,
-#constructor-summary > div.caption,
-#nested-class-summary > div.caption,
-#all-packages-table > div.caption > span,
-#class > div.caption > span,
-#method > div.caption > span {
-    display: none;
-}
-
 #field-summary > h2, #constructor-summary > h2, #method-summary > h2, #nested-class-summary > h2 {
     font-style: normal;
 }
@@ -1684,7 +1673,7 @@ body.class-declaration-page .summary .inherited-list h2 {
     background: none;
     border: none;
     font-weight: normal;
-    font-size: 15px;
+    font-size: 16px;
 
 }
 

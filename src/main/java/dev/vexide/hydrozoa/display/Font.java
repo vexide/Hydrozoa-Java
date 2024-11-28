@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
  *
  * @param size   the size of the font
  * @param family the font family of the font
- * @see Text#Text(String, Font, int, int)
+ * @see Text#Text(String, int, int, Font)
  */
 public record Font(@NotNull Size size, @NotNull Family family) {
     /**

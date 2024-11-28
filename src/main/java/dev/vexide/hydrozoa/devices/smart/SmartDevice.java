@@ -1,7 +1,6 @@
 package dev.vexide.hydrozoa.devices.smart;
 
 import dev.vexide.hydrozoa.DeviceException;
-import dev.vexide.hydrozoa.sdk.V5_Device;
 import dev.vexide.hydrozoa.sdk.V5_DeviceType;
 import org.jetbrains.annotations.NotNull;
 
@@ -19,16 +18,24 @@ public abstract class SmartDevice {
     public static final Duration UPDATE_INTERVAL = Duration.ofMillis(10);
 
     final @NotNull SmartPort port;
-    final @NotNull V5_Device handle;
 
     /**
      * Creates a new generic smart device.
      *
-     * @param port the smart port which this device is connected to
+     * @param port The smart port which this device is connected to. The port will be consumed by this device and may
+     *             not be reused.
      */
     public SmartDevice(@NotNull SmartPort port) {
-        this.port = port;
-        handle = port.deviceHandle();
+        this.port = port.take();
+    }
+
+    /**
+     * Remove the smart port handle from this smart device, invalidating this device.
+     *
+     * @return a new smart port with the same port number as this device
+     */
+    public @NotNull SmartPort takePort() {
+        return port.take();
     }
 
     /**

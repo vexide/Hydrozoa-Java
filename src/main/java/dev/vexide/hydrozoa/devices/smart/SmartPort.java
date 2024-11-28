@@ -10,6 +10,7 @@ import dev.vexide.hydrozoa.sdk.VexSdk;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -19,17 +20,32 @@ import java.util.Optional;
  */
 public final class SmartPort {
     private final int number;
+    private @Nullable Peripherals.Key key;
 
     /**
      * Creates a new Smart Port.
      *
-     * @param ignoredKey the peripherals key, which may only be accessed from within the {@link Peripherals} class
+     * @param key the peripherals key, which may only be accessed from within the {@link Peripherals} class
      * @param number     the port number of the smart port
      * @see Peripherals#takePort(int)
      */
     @ApiStatus.Internal
-    public SmartPort(Peripherals.Key ignoredKey, int number) {
+    public SmartPort(@NotNull Peripherals.Key key, int number) {
+        this.key = key;
         this.number = number;
+    }
+
+    /**
+     * Create a duplicate of this smart port while consuming this instance. This method is called during the
+     * instantiation of {@link SmartDevice} objects to ensure that each smart device has its own unique smart port.
+     *
+     * @return a new smart port with the same port number
+     */
+    @Contract("-> new")
+    public @NotNull SmartPort take() {
+        var key = validate();
+        this.key = null;
+        return new SmartPort(key, number);
     }
 
     /**
@@ -50,13 +66,23 @@ public final class SmartPort {
         return number - 1;
     }
 
+    @Contract(value = "-> _")
+    private @NotNull Peripherals.Key validate() {
+        if (key == null) {
+            throw new IllegalStateException(String.format("This smart port (%d) is already being used by another smart device", number));
+        }
+        return this.key;
+    }
+
     /**
      * Gets the underlying device handle for this smart port so that it can be passed to the {@link VexSdk}.
      * @return the device's SDK handle
+     * @throws IllegalStateException if the smart port is already being used by another smart device
      */
     @Contract(" -> new")
     @NotNull
     V5_Device deviceHandle() {
+        validate();
         return VexSdk.Device.vexDeviceGetByIndex(getIndex());
     }
 

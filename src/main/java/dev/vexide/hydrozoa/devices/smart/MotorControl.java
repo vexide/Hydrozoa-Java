@@ -10,6 +10,9 @@ import org.jetbrains.annotations.NotNull;
  * @see Motor#setTarget(MotorControl)
  */
 public abstract class MotorControl {
+    MotorControl() {
+    }
+
     abstract void apply(@NotNull Motor motor);
 
     /**
@@ -43,8 +46,9 @@ public abstract class MotorControl {
 //                throw new IllegalArgumentException("Voltage must be in the range [-12, 12]");
 //            }
 
-            VexSdk.Motor.vexDeviceMotorBrakeModeSet(motor.handle, V5MotorBrakeMode.Coast);
-            VexSdk.Motor.vexDeviceMotorVoltageSet(motor.handle, (int) (getVoltage() * 1000));
+            var handle = motor.port.deviceHandle();
+            VexSdk.Motor.vexDeviceMotorBrakeModeSet(handle, V5MotorBrakeMode.Coast);
+            VexSdk.Motor.vexDeviceMotorVoltageSet(handle, (int) (getVoltage() * 1000));
         }
     }
 
@@ -74,8 +78,9 @@ public abstract class MotorControl {
 
         @Override
         void apply(@NotNull Motor motor) {
-            VexSdk.Motor.vexDeviceMotorBrakeModeSet(motor.handle, V5MotorBrakeMode.Coast);
-            VexSdk.Motor.vexDeviceMotorVelocitySet(motor.handle, getRpm());
+            var handle = motor.port.deviceHandle();
+            VexSdk.Motor.vexDeviceMotorBrakeModeSet(handle, V5MotorBrakeMode.Coast);
+            VexSdk.Motor.vexDeviceMotorVelocitySet(handle, getRpm());
         }
     }
 
@@ -117,9 +122,10 @@ public abstract class MotorControl {
 
         @Override
         void apply(@NotNull Motor motor) {
-            VexSdk.Motor.vexDeviceMotorBrakeModeSet(motor.handle, V5MotorBrakeMode.Coast);
+            var handle = motor.port.deviceHandle();
+            VexSdk.Motor.vexDeviceMotorBrakeModeSet(handle, V5MotorBrakeMode.Coast);
             VexSdk.Motor.vexDeviceMotorAbsoluteTargetSet(
-                    motor.handle,
+                    handle,
                     getPosition().ticks(motor.getGearset().getTicksPerRevolution()),
                     getVelocity()
             );
@@ -152,8 +158,9 @@ public abstract class MotorControl {
 
         @Override
         void apply(@NotNull Motor motor) {
-            VexSdk.Motor.vexDeviceMotorBrakeModeSet(motor.handle, getMode().getRaw());
-            VexSdk.Motor.vexDeviceMotorVelocitySet(motor.handle, 0);
+            var handle = motor.port.deviceHandle();
+            VexSdk.Motor.vexDeviceMotorBrakeModeSet(handle, getMode().getRaw());
+            VexSdk.Motor.vexDeviceMotorVelocitySet(handle, 0);
         }
     }
 }
