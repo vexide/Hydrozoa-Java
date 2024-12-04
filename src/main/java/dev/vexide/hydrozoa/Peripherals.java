@@ -42,8 +42,8 @@ public class Peripherals {
     private @Nullable Display display = new Display(key);
 
     private Peripherals() {
-        for (int i = 0; i < ports.length; i++) {
-            ports[i] = new SmartPort(key, i + 1);
+        for (int num = 1; num <= ports.length; num++) {
+            ports[num - 1] = new SmartPort(key, num);
         }
     }
 
@@ -88,12 +88,14 @@ public class Peripherals {
             throw new IllegalArgumentException(String.format("Port %d is out of range [1, 21]", portNumber));
         }
 
-        var port = ports[portNumber];
+        var index = portNumber - 1;
+
+        var port = ports[index];
         if (port == null) {
             throw new NoSuchElementException(String.format("Port %d has already been used", portNumber));
         }
 
-        ports[portNumber - 1] = null;
+        ports[index] = null;
         return port;
     }
 
