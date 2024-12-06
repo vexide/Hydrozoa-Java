@@ -47,7 +47,7 @@ public final class CompetitionRuntime {
      * @param factory a function which creates a robot instance from the peripherals
      * @throws IllegalStateException if the peripherals have already been taken or this method has already been called
      */
-    public static void start(@NotNull Function<@NotNull Peripherals, @NotNull CompetitionRobot> factory) throws IllegalStateException {
+    public static void start(@NotNull Function<@NotNull Peripherals, @NotNull CompetitionRobot> factory) {
         try {
             var robot = factory.apply(Peripherals.take().orElseThrow(() -> new IllegalStateException("Peripherals already taken")));
 
@@ -96,8 +96,7 @@ public final class CompetitionRuntime {
                 }
             }
         } catch (Throwable e) {
-            System.err.println("Uncaught exception in competition runtime");
-            e.printStackTrace();
+            Platform.handleException(e);
         }
     }
 

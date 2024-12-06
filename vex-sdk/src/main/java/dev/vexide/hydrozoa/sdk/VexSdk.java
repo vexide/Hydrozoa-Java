@@ -8,6 +8,9 @@ import org.teavm.interop.StaticInit;
 @SuppressWarnings("MissingJavadoc")
 @StaticInit
 public final class VexSdk {
+    private VexSdk() {
+    }
+
     @Import(module = "vex", name = "vexTasksRun")
     public static native void vexTasksRun();
 
@@ -16,6 +19,9 @@ public final class VexSdk {
 
     @StaticInit
     public static final class Display {
+        private Display() {
+        }
+
         @Import(module = "vex", name = "vexDisplayRender")
         public static native void vexDisplayRender(boolean bVsyncWait, boolean bRunScheduler);
 
@@ -81,6 +87,9 @@ public final class VexSdk {
 
     @StaticInit
     public static final class Controller {
+        private Controller() {
+        }
+
         /**
          * Get the value of a controller's data channel.
          */
@@ -102,9 +111,11 @@ public final class VexSdk {
         private static native byte vexControllerConnectionStatusGetRaw(byte id);
     }
 
-
     @StaticInit
     public static final class Device {
+        private Device() {
+        }
+
         public static final int V5_MAX_DEVICE_PORTS = 32;
 
         @Import(module = "vex", name = "vexControllerConnectionStatusGet")
@@ -131,6 +142,9 @@ public final class VexSdk {
 
     @StaticInit
     public static final class Motor {
+        private Motor() {
+        }
+
         //    TODO:
         //    vexDeviceMotorZeroPositionFlagGet(device: V5_DeviceT) -> bool,
         //    vexDeviceMotorReverseFlagGet(device: V5_DeviceT) -> bool,
@@ -310,7 +324,7 @@ public final class VexSdk {
         @Import(module = "vex", name = "vexDeviceMotorZeroPositionFlagGet")
         private static native boolean vexDeviceMotorZeroPositionFlagGetRaw(int device);
 
-        public static void vexDeviceMotorGearingSet(@NotNull V5_Device device, V5MotorGearset gearset) {
+        public static void vexDeviceMotorGearingSet(@NotNull V5_Device device, @NotNull V5MotorGearset gearset) {
             vexDeviceMotorGearingSetRaw(device.raw(), gearset.value());
         }
 
@@ -330,7 +344,7 @@ public final class VexSdk {
         @Import(module = "vex", name = "vexDeviceMotorReverseFlagSet")
         private static native void vexDeviceMotorReverseFlagSetRaw(int device, boolean flag);
 
-        public static void vexDeviceMotorEncoderUnitsSet(@NotNull V5_Device device, V5MotorEncoderUnits units) {
+        public static void vexDeviceMotorEncoderUnitsSet(@NotNull V5_Device device, @NotNull V5MotorEncoderUnits units) {
             vexDeviceMotorEncoderUnitsSetRaw(device.raw(), units.value());
         }
         @Import(module = "vex", name = "vexDeviceMotorEncoderUnitsSet")
@@ -351,4 +365,48 @@ public final class VexSdk {
         private static native void vexDeviceMotorVoltageGetRaw(int device, int voltage);
     }
 
+    @StaticInit
+    public static final class Serial {
+        private Serial() {
+        }
+
+        @Import(module = "vex", name = "vexSerialWriteChar")
+        public static native int vexSerialWriteChar(int channel, byte c);
+
+        @Import(module = "vex", name = "vexSerialReadChar")
+        public static native int vexSerialReadChar(int channel);
+
+        @Import(module = "vex", name = "vexSerialPeekChar")
+        public static native int vexSerialPeekChar(int channel);
+
+        @Import(module = "vex", name = "vexSerialWriteFree")
+        public static native int vexSerialWriteFree(int channel);
+    }
+
+    @StaticInit
+    public static final class System {
+        private System() {
+        }
+
+        @Import(module = "vex", name = "vexSystemTimeGet")
+        public static native int vexSystemTimeGet();
+
+        @Import(module = "vex", name = "vexSystemExitRequest")
+        public static native void vexSystemExitRequest();
+
+        @Import(module = "vex", name = "vexSystemHighResTimeGet")
+        public static native long vexSystemHighResTimeGet();
+
+        @Import(module = "vex", name = "vexSystemPowerupTimeGet")
+        public static native long vexSystemPowerupTimeGet();
+
+        @Import(module = "vex", name = "vexSystemLinkAddrGet")
+        public static native int vexSystemLinkAddrGet();
+
+        @Import(module = "vex", name = "vexSystemVersion")
+        public static native int vexSystemVersion();
+
+        @Import(module = "vex", name = "vexStdlibVersion")
+        public static native int vexStdlibVersion();
+    }
 }
