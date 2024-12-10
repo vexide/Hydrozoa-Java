@@ -4,6 +4,7 @@
 module dev.vexide.hydrozoa {
     requires org.jetbrains.annotations;
     requires dev.vexide.hydrozoa.sdk;
+    requires transitive java.measure;
 
     exports dev.vexide.hydrozoa;
     exports dev.vexide.hydrozoa.display;

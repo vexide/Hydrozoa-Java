@@ -103,6 +103,7 @@ dependencies {
     compileOnly("org.jetbrains:annotations:24.0.0")
 
     implementation(project(":vex-sdk"))
+    implementation("javax.measure:unit-api:2.2")
 }
 
 tasks.javadoc {
