@@ -151,6 +151,33 @@ public class Motor extends SmartDevice {
     }
 
     /**
+     * Gets the current position of the motor.
+     * @return the current position of the motor as an {@link EncoderPosition}
+     * @throws DeviceException if the motor is not connected
+     */
+    public @NotNull EncoderPosition getPosition() throws DeviceException {
+        validateConnection();
+
+        double pos = VexSdk.Motor.vexDeviceMotorPositionGet(port.deviceHandle());
+        return EncoderPosition.ofTicks((int) pos, gearset.getTicksPerRevolution());
+    }
+
+    /**
+     * Sets the current encoder position to the given position without moving the motor.
+     * Analogous to taring or resetting the encoder so that the new position is equal to the given position.
+     * @param position the new position of the motor
+     * @throws DeviceException if the motor is not connected
+     */
+    public void setPosition(@NotNull EncoderPosition position) throws DeviceException {
+        validateConnection();
+
+        VexSdk.Motor.vexDeviceMotorPositionSet(
+                port.deviceHandle(),
+                position.ticks(gearset.getTicksPerRevolution())
+        );
+    }
+
+    /**
      * The internal gearset of a V5 Smart Motor.
      */
     public enum Gearset {

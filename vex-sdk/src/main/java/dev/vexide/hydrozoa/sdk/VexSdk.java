@@ -145,46 +145,6 @@ public final class VexSdk {
         private Motor() {
         }
 
-        //    TODO:
-        //    vexDeviceMotorZeroPositionFlagGet(device: V5_DeviceT) -> bool,
-        //    vexDeviceMotorReverseFlagGet(device: V5_DeviceT) -> bool,
-        //    vexDeviceMotorEncoderUnitsGet(device: V5_DeviceT) -> V5MotorEncoderUnits,
-        //    vexDeviceMotorBrakeModeGet(device: V5_DeviceT) -> V5MotorBrakeMode,
-        //    vexDeviceMotorPositionSet(device: V5_DeviceT, position: c_double),
-        //    vexDeviceMotorPositionGet(device: V5_DeviceT) -> c_double,
-        //    vexDeviceMotorPositionRawGet(
-        //        device: V5_DeviceT,
-        //        timestamp: *mut u32,
-        //    ) -> i32,
-        //    vexDeviceMotorPositionReset(device: V5_DeviceT),
-        //    vexDeviceMotorTargetGet(device: V5_DeviceT) -> c_double,
-        //    vexDeviceMotorServoTargetSet(device: V5_DeviceT, position: c_double),
-        //    vexDeviceMotorAbsoluteTargetSet(
-        //        device: V5_DeviceT,
-        //        position: c_double,
-        //        veloctiy: i32,
-        //    ),
-        //    vexDeviceMotorRelativeTargetSet(
-        //        device: V5_DeviceT,
-        //        position: c_double,
-        //        velocity: i32,
-        //    ),
-        //    vexDeviceMotorFaultsGet(device: V5_DeviceT) -> u32,
-        //    vexDeviceMotorFlagsGet(device: V5_DeviceT) -> u32,
-        //    vexDeviceMotorVoltageSet(device: V5_DeviceT, voltage: i32),
-        //    vexDeviceMotorVoltageGet(device: V5_DeviceT) -> i32,
-        //    vexDeviceMotorGearingSet(device: V5_DeviceT, gearset: V5MotorGearset),
-        //    vexDeviceMotorGearingGet(device: V5_DeviceT) -> V5MotorGearset,
-        //    vexDeviceMotorVoltageLimitSet(device: V5_DeviceT, limit: i32),
-        //    vexDeviceMotorVoltageLimitGet(device: V5_DeviceT) -> i32,
-        //    vexDeviceMotorVelocityUpdate(device: V5_DeviceT, velocity: i32),
-        //    vexDeviceMotorPositionPidSet(device: V5_DeviceT, pid: *mut V5_DeviceMotorPid),
-        //    vexDeviceMotorVelocityPidSet(device: V5_DeviceT, pid: *mut V5_DeviceMotorPid),
-        //    vexDeviceMotorExternalProfileSet(
-        //        device: V5_DeviceT,
-        //        position: c_double,
-        //        velocity: i32,
-        //    ),
         public static void vexDeviceMotorVelocitySet(@NotNull V5_Device device, int velocity) {
             vexDeviceMotorVelocitySetRaw(device.raw(), velocity);
         }
@@ -363,6 +323,77 @@ public final class VexSdk {
 
         @Import(module = "vex", name = "vexDeviceMotorVoltageGet")
         private static native void vexDeviceMotorVoltageGetRaw(int device, int voltage);
+        //    TODO:
+        //    vexDeviceMotorPositionGet(device: V5_DeviceT) -> c_double,
+        //    vexDeviceMotorPositionRawGet(
+        //        device: V5_DeviceT,
+        //        timestamp: *mut u32,
+        //    ) -> i32,
+        //    vexDeviceMotorPositionReset(device: V5_DeviceT),
+        //    vexDeviceMotorTargetGet(device: V5_DeviceT) -> c_double,
+        //    vexDeviceMotorServoTargetSet(device: V5_DeviceT, position: c_double),
+        //    vexDeviceMotorAbsoluteTargetSet(
+        //        device: V5_DeviceT,
+        //        position: c_double,
+        //        veloctiy: i32,
+        //    ),
+        //    vexDeviceMotorRelativeTargetSet(
+        //        device: V5_DeviceT,
+        //        position: c_double,
+        //        velocity: i32,
+        //    ),
+        //    vexDeviceMotorFaultsGet(device: V5_DeviceT) -> u32,
+        //    vexDeviceMotorFlagsGet(device: V5_DeviceT) -> u32,
+        //    vexDeviceMotorVoltageSet(device: V5_DeviceT, voltage: i32),
+        //    vexDeviceMotorVoltageGet(device: V5_DeviceT) -> i32,
+        //    vexDeviceMotorGearingSet(device: V5_DeviceT, gearset: V5MotorGearset),
+        //    vexDeviceMotorGearingGet(device: V5_DeviceT) -> V5MotorGearset,
+        //    vexDeviceMotorVoltageLimitSet(device: V5_DeviceT, limit: i32),
+        //    vexDeviceMotorVoltageLimitGet(device: V5_DeviceT) -> i32,
+        //    vexDeviceMotorVelocityUpdate(device: V5_DeviceT, velocity: i32),
+        //    vexDeviceMotorPositionPidSet(device: V5_DeviceT, pid: *mut V5_DeviceMotorPid),
+        //    vexDeviceMotorVelocityPidSet(device: V5_DeviceT, pid: *mut V5_DeviceMotorPid),
+        //    vexDeviceMotorExternalProfileSet(
+        //        device: V5_DeviceT,
+        //        position: c_double,
+        //        velocity: i32,
+        //    ),
+
+
+        public static boolean vexDeviceMotorReverseFlagGet(@NotNull V5_Device device) {
+            return vexDeviceMotorReverseFlagGetRaw(device.raw());
+        }
+
+        @Import(module = "vex", name = "vexDeviceMotorReverseFlagGet")
+        private static native boolean vexDeviceMotorReverseFlagGetRaw(int device);
+
+        public static @NotNull V5MotorEncoderUnits vexDeviceMotorEncoderUnitsGet(@NotNull V5_Device device) {
+            return new V5MotorEncoderUnits(vexDeviceMotorEncoderUnitsGetRaw(device.raw()));
+        }
+
+        @Import(module = "vex", name = "vexDeviceMotorEncoderUnitsGet")
+        private static native byte vexDeviceMotorEncoderUnitsGetRaw(int device);
+
+        public static @NotNull V5MotorBrakeMode vexDeviceMotorBrakeModeGet(@NotNull V5_Device device) {
+            return new V5MotorBrakeMode(vexDeviceMotorBrakeModeGetRaw(device.raw()));
+        }
+
+        @Import(module = "vex", name = "vexDeviceMotorBrakeModeGet")
+        private static native byte vexDeviceMotorBrakeModeGetRaw(int device);
+
+        public static void vexDeviceMotorPositionSet(@NotNull V5_Device device, double position) {
+            vexDeviceMotorPositionSetRaw(device.raw(), position);
+        }
+
+        @Import(module = "vex", name = "vexDeviceMotorPositionSet")
+        private static native void vexDeviceMotorPositionSetRaw(int device, double position);
+
+        public static double vexDeviceMotorPositionGet(@NotNull V5_Device device) {
+            return vexDeviceMotorPositionGetRaw(device.raw());
+        }
+
+        @Import(module = "vex", name = "vexDeviceMotorPositionGet")
+        private static native double vexDeviceMotorPositionGetRaw(int device);
     }
 
     @StaticInit
