@@ -41,21 +41,23 @@ public class PIDController {
         return duration.getSeconds() + duration.getNano() / 1_000_000_000.0;
     }
 
+    protected double update(double error, double deltaTime) {
+        var inIntegrationRange = integrationRange == null || Math.abs(error) < integrationRange;
+        var hasCrossedSetpoint = Math.signum(error) != Math.signum(prevError);
+        if (inIntegrationRange && !hasCrossedSetpoint) {
+            integral += error * deltaTime;
+        } else {
+            integral = 0;
+        }
+
+        var derivative = (error - prevError) / deltaTime;
+        prevError = error;
+
+        return (error * gains.kP()) + (integral * gains.kI()) + (derivative * gains.kD());
+    }
+
     public double calculate(double measurement, double setpoint, double deltaTime) {
-         var error = setpoint - measurement;
-
-         var inIntegrationRange = integrationRange == null || Math.abs(error) < integrationRange;
-         var hasCrossedSetpoint = Math.signum(error) != Math.signum(prevError);
-         if (inIntegrationRange && !hasCrossedSetpoint) {
-             integral += error * deltaTime;
-         } else {
-             integral = 0;
-         }
-
-         var derivative = (error - prevError) / deltaTime;
-         prevError = error;
-
-         return (error * gains.kP()) + (integral * gains.kI()) + (derivative * gains.kD());
+         return update(setpoint - measurement, deltaTime);
     }
 
     public double calculate(double measurement, double setpoint) {

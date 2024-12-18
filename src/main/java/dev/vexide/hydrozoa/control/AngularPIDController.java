@@ -66,45 +66,6 @@ public class AngularPIDController extends PIDController {
     public double calculate(double measurement, double setpoint, double deltaTime) {
         var error = normalizeAngle(setpoint - measurement);
 
-        var inIntegrationRange = integrationRange == null
-                || Math.abs(error) < integrationRange;
-        var hasCrossedSetpoint = Math.signum(error) != Math.signum(prevError);
-
-        if (inIntegrationRange && !hasCrossedSetpoint) {
-            integral += error * deltaTime;
-        } else {
-            integral = 0;
-        }
-
-        var derivative = (error - prevError) / deltaTime;
-        prevError = error;
-
-        return (error * gains.kP()) + (integral * gains.kI()) + (derivative * gains.kD());
-    }
-
-    public void reset() {
-        integral = 0;
-        prevError = 0;
-        prevTime = clock.instant();
-    }
-
-    public @NotNull PIDGains getGains() {
-        return gains;
-    }
-
-    public void setGains(@NotNull PIDGains gains) {
-        this.gains = gains;
-    }
-
-    public @Nullable Double getIntegrationRange() {
-        return integrationRange;
-    }
-
-    public void setIntegrationRange(@Nullable Double integrationRange) {
-        this.integrationRange = integrationRange;
-    }
-
-    public @NotNull Instant getPrevTime() {
-        return prevTime;
+        return update(error, deltaTime);
     }
 }
