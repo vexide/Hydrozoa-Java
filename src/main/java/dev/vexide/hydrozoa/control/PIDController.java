@@ -37,10 +37,6 @@ public class PIDController {
         this(new PIDGains(kP, kI, kD));
     }
 
-    static double durationAsSeconds(@NotNull Duration duration) {
-        return duration.getSeconds() + duration.getNano() / 1_000_000_000.0;
-    }
-
     protected double update(double error, double deltaTime) {
         var inIntegrationRange = integrationRange == null || Math.abs(error) < integrationRange;
         var hasCrossedSetpoint = Math.signum(error) != Math.signum(prevError);
@@ -67,7 +63,7 @@ public class PIDController {
     }
 
     public double calculate(double measurement, double setpoint, @NotNull Duration deltaTime) {
-        var dtSecs = durationAsSeconds(deltaTime);
+        var dtSecs = ControlUtils.durationAsSeconds(deltaTime);
         return calculate(measurement, setpoint, dtSecs);
     }
 
