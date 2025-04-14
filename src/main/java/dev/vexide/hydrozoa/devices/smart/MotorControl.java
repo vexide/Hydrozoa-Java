@@ -1,6 +1,5 @@
 package dev.vexide.hydrozoa.devices.smart;
 
-import dev.vexide.hydrozoa.sdk.V5MotorBrakeMode;
 import dev.vexide.hydrozoa.sdk.VexSdk;
 import org.jetbrains.annotations.NotNull;
 
@@ -47,8 +46,8 @@ public abstract class MotorControl {
 //            }
 
             var handle = motor.port.deviceHandle();
-            VexSdk.Motor.vexDeviceMotorBrakeModeSet(handle, V5MotorBrakeMode.Coast);
-            VexSdk.Motor.vexDeviceMotorVoltageSet(handle, (int) (getVoltage() * 1000));
+            VexSdk.Motor.setBrakeMode(handle, VexSdk.Motor.BrakeMode.COAST);
+            VexSdk.Motor.setVoltage(handle, (int) (getVoltage() * 1000));
         }
     }
 
@@ -79,8 +78,8 @@ public abstract class MotorControl {
         @Override
         void apply(@NotNull Motor motor) {
             var handle = motor.port.deviceHandle();
-            VexSdk.Motor.vexDeviceMotorBrakeModeSet(handle, V5MotorBrakeMode.Coast);
-            VexSdk.Motor.vexDeviceMotorVelocitySet(handle, getRpm());
+            VexSdk.Motor.setBrakeMode(handle, VexSdk.Motor.BrakeMode.COAST);
+            VexSdk.Motor.setVelocity(handle, getRpm());
         }
     }
 
@@ -123,8 +122,8 @@ public abstract class MotorControl {
         @Override
         void apply(@NotNull Motor motor) {
             var handle = motor.port.deviceHandle();
-            VexSdk.Motor.vexDeviceMotorBrakeModeSet(handle, V5MotorBrakeMode.Coast);
-            VexSdk.Motor.vexDeviceMotorAbsoluteTargetSet(
+            VexSdk.Motor.setBrakeMode(handle, VexSdk.Motor.BrakeMode.COAST);
+            VexSdk.Motor.setAbsoluteTarget(
                     handle,
                     getPosition().ticks(motor.getGearset().getTicksPerRevolution()),
                     getVelocity()
@@ -159,8 +158,8 @@ public abstract class MotorControl {
         @Override
         void apply(@NotNull Motor motor) {
             var handle = motor.port.deviceHandle();
-            VexSdk.Motor.vexDeviceMotorBrakeModeSet(handle, getMode().getRaw());
-            VexSdk.Motor.vexDeviceMotorVelocitySet(handle, 0);
+            VexSdk.Motor.setBrakeMode(handle, getMode().getRaw());
+            VexSdk.Motor.setVelocity(handle, 0);
         }
     }
 }

@@ -4,8 +4,7 @@ import dev.vexide.hydrozoa.DeviceException;
 import dev.vexide.hydrozoa.Peripherals;
 import dev.vexide.hydrozoa.devices.DeviceDisconnectedException;
 import dev.vexide.hydrozoa.devices.IncorrectDeviceException;
-import dev.vexide.hydrozoa.sdk.V5_Device;
-import dev.vexide.hydrozoa.sdk.V5_DeviceType;
+import dev.vexide.hydrozoa.sdk.Hydrozoa;
 import dev.vexide.hydrozoa.sdk.VexSdk;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Contract;
@@ -81,9 +80,9 @@ public final class SmartPort {
      */
     @Contract(" -> new")
     @NotNull
-    V5_Device deviceHandle() {
+    VexSdk.V5Device deviceHandle() {
         validate();
-        return VexSdk.Device.vexDeviceGetByIndex(getIndex());
+        return VexSdk.Device.getByIndex(getIndex());
     }
 
     /**
@@ -91,10 +90,10 @@ public final class SmartPort {
      * @return the device's type, if a device is connected
      */
     public Optional<SmartDevice.Type> deviceType() {
-        var deviceTypes = new byte[VexSdk.Device.V5_MAX_DEVICE_PORTS];
-        VexSdk.Device.vexDeviceGetStatus(deviceTypes);
+        var deviceTypes = new byte[32];
+        VexSdk.Device.getStatus(Hydrozoa.getByteArrayPointer(deviceTypes));
 
-        return SmartDevice.Type.fromRaw(new V5_DeviceType(deviceTypes[getIndex()]));
+        return SmartDevice.Type.fromRaw(new VexSdk.Device.Type(deviceTypes[getIndex()]));
     }
 
     /**
