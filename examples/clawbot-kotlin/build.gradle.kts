@@ -1,6 +1,6 @@
 plugins {
-    kotlin("jvm") version "2.0.20"
-        id("dev.vexide.hydrozoa")
+    kotlin("jvm") version libs.versions.kotlin
+    id("dev.vexide.hydrozoa")
 }
 
 hydrozoa {

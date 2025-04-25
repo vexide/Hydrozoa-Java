@@ -3,9 +3,9 @@ plugins {
     `maven-publish`
     idea
 
-    id("org.teavm.library").version("0.10.2")
+    alias(libs.plugins.teavm)
+    alias(libs.plugins.jreleaser)
     id("dev.vexide.hydrozoa").apply(false)
-    id("org.jreleaser") version "1.15.0"
 }
 
 group = "dev.vexide"

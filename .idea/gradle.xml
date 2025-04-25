@@ -7,6 +7,31 @@
         <compositeConfiguration>
           <compositeBuild compositeDefinitionSource="SCRIPT">
             <builds>
+              <build path="$PROJECT_DIR$/bindings-generator" name="bindings-generator">
+                <projects>
+                  <project path="$PROJECT_DIR$/bindings-generator" />
+                </projects>
+              </build>
+              <build path="$PROJECT_DIR$/examples/build" name="build">
+                <projects>
+                  <project path="$PROJECT_DIR$/examples/build" />
+                </projects>
+              </build>
+              <build path="$PROJECT_DIR$/examples/clawbot" name="clawbot">
+                <projects>
+                  <project path="$PROJECT_DIR$/examples/clawbot" />
+                </projects>
+              </build>
+              <build path="$PROJECT_DIR$/examples/clawbot-kotlin" name="clawbot-kotlin">
+                <projects>
+                  <project path="$PROJECT_DIR$/examples/clawbot-kotlin" />
+                </projects>
+              </build>
+              <build path="$PROJECT_DIR$/examples/screen" name="screen">
+                <projects>
+                  <project path="$PROJECT_DIR$/examples/screen" />
+                </projects>
+              </build>
               <build path="$PROJECT_DIR$/gradle-plugin" name="hydrozoa">
                 <projects>
                   <project path="$PROJECT_DIR$/gradle-plugin" />
@@ -19,7 +44,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/examples" />
+            <option value="$PROJECT_DIR$/bindings-generator" />
+            <option value="$PROJECT_DIR$/examples/build" />
             <option value="$PROJECT_DIR$/examples/clawbot" />
             <option value="$PROJECT_DIR$/examples/clawbot-kotlin" />
             <option value="$PROJECT_DIR$/examples/screen" />
