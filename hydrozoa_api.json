@@ -1,0 +1,1491 @@
+{
+  "name": "vex",
+  "items": [
+    {
+      "name": "vexDisplayForegroundColor",
+      "params": [
+        {
+          "name": "col",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDisplayBackgroundColor",
+      "params": [
+        {
+          "name": "col",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDisplayErase",
+      "params": [],
+      "returns": null
+    },
+    {
+      "name": "vexDisplayScroll",
+      "params": [
+        {
+          "name": "nStartLine",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "nLines",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDisplayScrollRect",
+      "params": [
+        {
+          "name": "x1",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "y1",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "x2",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "y2",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "nLines",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDisplayPixelSet",
+      "params": [
+        {
+          "name": "x",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "y",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDisplayPixelClear",
+      "params": [
+        {
+          "name": "x",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "y",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDisplayLineDraw",
+      "params": [
+        {
+          "name": "x1",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "y1",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "x2",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "y2",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDisplayLineClear",
+      "params": [
+        {
+          "name": "x1",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "y1",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "x2",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "y2",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDisplayRectDraw",
+      "params": [
+        {
+          "name": "x1",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "y1",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "x2",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "y2",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDisplayRectClear",
+      "params": [
+        {
+          "name": "x1",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "y1",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "x2",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "y2",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDisplayRectFill",
+      "params": [
+        {
+          "name": "x1",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "y1",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "x2",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "y2",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDisplayCircleDraw",
+      "params": [
+        {
+          "name": "xc",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "yc",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "radius",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDisplayCircleClear",
+      "params": [
+        {
+          "name": "xc",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "yc",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "radius",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDisplayCircleFill",
+      "params": [
+        {
+          "name": "xc",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "yc",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "radius",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDisplayTextSize",
+      "params": [
+        {
+          "name": "n",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "d",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDisplayForegroundColorGet",
+      "params": [],
+      "returns": {
+        "type": "Int"
+      }
+    },
+    {
+      "name": "vexDisplayBackgroundColorGet",
+      "params": [],
+      "returns": {
+        "type": "Int"
+      }
+    },
+    {
+      "name": "vexDisplayClipRegionSet",
+      "params": [
+        {
+          "name": "x1",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "y1",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "x2",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "y2",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDisplayRender",
+      "params": [
+        {
+          "name": "bVsyncWait",
+          "type": {
+            "type": "Bool"
+          }
+        },
+        {
+          "name": "bRunScheduler",
+          "type": {
+            "type": "Bool"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDisplayDoubleBufferDisable",
+      "params": [],
+      "returns": null
+    },
+    {
+      "name": "vexDisplayClipRegionSetWithIndex",
+      "params": [
+        {
+          "name": "index",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "x1",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "y1",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "x2",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "y2",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDisplayPrintf",
+      "params": [
+        {
+          "name": "xpos",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "ypos",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "bOpaque",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "string",
+          "type": {
+            "type": "StringPtr"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDisplayString",
+      "params": [
+        {
+          "name": "nLineNumber",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "string",
+          "type": {
+            "type": "StringPtr"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDisplayStringAt",
+      "params": [
+        {
+          "name": "xpos",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "ypos",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "string",
+          "type": {
+            "type": "StringPtr"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDisplayBigString",
+      "params": [
+        {
+          "name": "nLineNumber",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "string",
+          "type": {
+            "type": "StringPtr"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDisplayBigStringAt",
+      "params": [
+        {
+          "name": "xpos",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "ypos",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "string",
+          "type": {
+            "type": "StringPtr"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDisplaySmallStringAt",
+      "params": [
+        {
+          "name": "xpos",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "ypos",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "string",
+          "type": {
+            "type": "StringPtr"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDisplayCenteredString",
+      "params": [
+        {
+          "name": "nLineNumber",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "string",
+          "type": {
+            "type": "StringPtr"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDisplayBigCenteredString",
+      "params": [
+        {
+          "name": "nLineNumber",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "string",
+          "type": {
+            "type": "StringPtr"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexControllerGet",
+      "params": [
+        {
+          "name": "id",
+          "type": {
+            "type": "Named",
+            "name": "V5_ControllerId"
+          }
+        },
+        {
+          "name": "index",
+          "type": {
+            "type": "Named",
+            "name": "V5_ControllerIndex"
+          }
+        }
+      ],
+      "returns": {
+        "type": "Int"
+      }
+    },
+    {
+      "name": "vexControllerConnectionStatusGet",
+      "params": [
+        {
+          "name": "id",
+          "type": {
+            "type": "Named",
+            "name": "V5_ControllerId"
+          }
+        }
+      ],
+      "returns": {
+        "type": "Named",
+        "name": "V5_ControllerStatus"
+      }
+    },
+    {
+      "name": "vexDeviceGetByIndex",
+      "params": [
+        {
+          "name": "index",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": {
+        "type": "Int"
+      }
+    },
+    {
+      "name": "vexDeviceMotorVelocitySet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "velocity",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDeviceMotorVelocityGet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": {
+        "type": "Int"
+      }
+    },
+    {
+      "name": "vexDeviceMotorActualVelocityGet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": {
+        "type": "Double"
+      }
+    },
+    {
+      "name": "vexDeviceMotorDirectionGet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": {
+        "type": "Int"
+      }
+    },
+    {
+      "name": "vexDeviceMotorModeSet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "mode",
+          "type": {
+            "type": "Named",
+            "name": "V5MotorControlMode"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDeviceMotorModeGet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": {
+        "type": "Named",
+        "name": "V5MotorControlMode"
+      }
+    },
+    {
+      "name": "vexDeviceMotorPwmSet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "pwm",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDeviceMotorPwmGet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": {
+        "type": "Int"
+      }
+    },
+    {
+      "name": "vexDeviceMotorCurrentLimitSet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "limit",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDeviceMotorCurrentLimitGet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": {
+        "type": "Int"
+      }
+    },
+    {
+      "name": "vexDeviceMotorCurrentGet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": {
+        "type": "Int"
+      }
+    },
+    {
+      "name": "vexDeviceMotorPowerGet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": {
+        "type": "Double"
+      }
+    },
+    {
+      "name": "vexDeviceMotorTorqueGet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": {
+        "type": "Double"
+      }
+    },
+    {
+      "name": "vexDeviceMotorEfficiencyGet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": {
+        "type": "Double"
+      }
+    },
+    {
+      "name": "vexDeviceMotorTemperatureGet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": {
+        "type": "Double"
+      }
+    },
+    {
+      "name": "vexDeviceMotorOverTempFlagGet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": {
+        "type": "Bool"
+      }
+    },
+    {
+      "name": "vexDeviceMotorCurrentLimitFlagGet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": {
+        "type": "Bool"
+      }
+    },
+    {
+      "name": "vexDeviceMotorZeroVelocityFlagGet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": {
+        "type": "Bool"
+      }
+    },
+    {
+      "name": "vexDeviceMotorZeroPositionFlagGet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": {
+        "type": "Bool"
+      }
+    },
+    {
+      "name": "vexDeviceMotorReverseFlagSet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "reverse",
+          "type": {
+            "type": "Bool"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDeviceMotorReverseFlagGet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": {
+        "type": "Bool"
+      }
+    },
+    {
+      "name": "vexDeviceMotorEncoderUnitsSet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "units",
+          "type": {
+            "type": "Named",
+            "name": "V5MotorEncoderUnits"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDeviceMotorEncoderUnitsGet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": {
+        "type": "Named",
+        "name": "V5MotorEncoderUnits"
+      }
+    },
+    {
+      "name": "vexDeviceMotorBrakeModeSet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "mode",
+          "type": {
+            "type": "Named",
+            "name": "V5MotorBrakeMode"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDeviceMotorBrakeModeGet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": {
+        "type": "Named",
+        "name": "V5MotorBrakeMode"
+      }
+    },
+    {
+      "name": "vexDeviceMotorPositionSet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "position",
+          "type": {
+            "type": "Double"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDeviceMotorPositionGet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": {
+        "type": "Double"
+      }
+    },
+    {
+      "name": "vexDeviceMotorPositionReset",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDeviceMotorTargetGet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": {
+        "type": "Double"
+      }
+    },
+    {
+      "name": "vexDeviceMotorServoTargetSet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "position",
+          "type": {
+            "type": "Double"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDeviceMotorAbsoluteTargetSet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "position",
+          "type": {
+            "type": "Double"
+          }
+        },
+        {
+          "name": "veloctiy",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDeviceMotorRelativeTargetSet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "position",
+          "type": {
+            "type": "Double"
+          }
+        },
+        {
+          "name": "velocity",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDeviceMotorFaultsGet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": {
+        "type": "Int"
+      }
+    },
+    {
+      "name": "vexDeviceMotorFlagsGet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": {
+        "type": "Int"
+      }
+    },
+    {
+      "name": "vexDeviceMotorVoltageSet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "voltage",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDeviceMotorVoltageGet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": {
+        "type": "Int"
+      }
+    },
+    {
+      "name": "vexDeviceMotorGearingSet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "gearset",
+          "type": {
+            "type": "Named",
+            "name": "V5MotorGearset"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDeviceMotorGearingGet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": {
+        "type": "Named",
+        "name": "V5MotorGearset"
+      }
+    },
+    {
+      "name": "vexDeviceMotorVoltageLimitSet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "limit",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDeviceMotorVoltageLimitGet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": {
+        "type": "Int"
+      }
+    },
+    {
+      "name": "vexDeviceMotorVelocityUpdate",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "velocity",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexDeviceMotorExternalProfileSet",
+      "params": [
+        {
+          "name": "device",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "position",
+          "type": {
+            "type": "Double"
+          }
+        },
+        {
+          "name": "velocity",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "vexSerialWriteChar",
+      "params": [
+        {
+          "name": "channel",
+          "type": {
+            "type": "Int"
+          }
+        },
+        {
+          "name": "c",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": {
+        "type": "Int"
+      }
+    },
+    {
+      "name": "vexSerialReadChar",
+      "params": [
+        {
+          "name": "channel",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": {
+        "type": "Int"
+      }
+    },
+    {
+      "name": "vexSerialPeekChar",
+      "params": [
+        {
+          "name": "channel",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": {
+        "type": "Int"
+      }
+    },
+    {
+      "name": "vexSerialWriteFree",
+      "params": [
+        {
+          "name": "channel",
+          "type": {
+            "type": "Int"
+          }
+        }
+      ],
+      "returns": {
+        "type": "Int"
+      }
+    },
+    {
+      "name": "vexSystemTimeGet",
+      "params": [],
+      "returns": {
+        "type": "Int"
+      }
+    },
+    {
+      "name": "vexSystemExitRequest",
+      "params": [],
+      "returns": null
+    },
+    {
+      "name": "vexSystemHighResTimeGet",
+      "params": [],
+      "returns": {
+        "type": "Long"
+      }
+    },
+    {
+      "name": "vexSystemPowerupTimeGet",
+      "params": [],
+      "returns": {
+        "type": "Long"
+      }
+    },
+    {
+      "name": "vexSystemLinkAddrGet",
+      "params": [],
+      "returns": {
+        "type": "Int"
+      }
+    },
+    {
+      "name": "vexSystemVersion",
+      "params": [],
+      "returns": {
+        "type": "Int"
+      }
+    },
+    {
+      "name": "vexStdlibVersion",
+      "params": [],
+      "returns": {
+        "type": "Int"
+      }
+    },
+    {
+      "name": "vexTasksRun",
+      "params": [],
+      "returns": null
+    },
+    {
+      "name": "vexCompetitionStatus",
+      "params": [],
+      "returns": {
+        "type": "Int"
+      }
+    }
+  ],
+  "enums": []
+}

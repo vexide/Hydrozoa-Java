@@ -11,12 +11,19 @@ plugins {
     `java-gradle-plugin`
 
 //    // Apply the Kotlin JVM plugin to add support for Kotlin.
-//    alias(libs.plugins.kotlin.jvm)
+    kotlin("jvm") version libs.versions.kotlin
+    kotlin("plugin.serialization") version libs.versions.kotlin
 }
 
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
+}
+
+dependencies {
+    implementation("com.github.javaparser:javaparser-core:3.26.4")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.1")
+    implementation("com.google.guava:guava:33.4.8-jre")
 }
 
 testing {
@@ -50,8 +57,8 @@ testing {
 gradlePlugin {
     // Define the plugin
     val greeting by plugins.creating {
-        id = "org.example.greeting"
-        implementationClass = "org.example.BindingsGeneratorPlugin"
+        id = "dev.vexide.hydrozoa.plugin.bindings"
+        implementationClass = "dev.vexide.hydrozoa.BindingsGeneratorPlugin"
     }
 }
 
