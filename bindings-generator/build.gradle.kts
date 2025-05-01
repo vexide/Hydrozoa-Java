@@ -58,7 +58,7 @@ gradlePlugin {
     // Define the plugin
     val greeting by plugins.creating {
         id = "dev.vexide.hydrozoa.plugin.bindings"
-        implementationClass = "dev.vexide.hydrozoa.BindingsGeneratorPlugin"
+        implementationClass = "dev.vexide.hydrozoa.plugin.bindings.BindingsGeneratorPlugin"
     }
 }
 

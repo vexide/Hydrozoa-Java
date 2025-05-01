@@ -5,13 +5,17 @@ package dev.vexide.hydrozoa.plugin.bindings
 
 import com.github.javaparser.StaticJavaParser
 import com.github.javaparser.ast.CompilationUnit
+import com.github.javaparser.ast.Modifier
 import com.github.javaparser.ast.Modifier.Keyword
 import com.github.javaparser.ast.type.Type
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration
+import com.github.javaparser.ast.expr.AnnotationExpr
+import com.github.javaparser.ast.expr.SimpleName
 import com.github.javaparser.ast.expr.StringLiteralExpr
 import com.github.javaparser.ast.type.PrimitiveType
 import com.github.javaparser.ast.type.PrimitiveType.Primitive
 import com.github.javaparser.ast.type.VoidType
+import com.github.javaparser.utils.SourceRoot
 import com.google.common.base.CaseFormat
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -24,18 +28,20 @@ import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.tasks.InputFile
 import org.gradle.api.tasks.OutputDirectory
 import org.gradle.api.tasks.TaskAction
+import java.nio.file.Path
+import kotlin.jvm.optionals.getOrNull
 
 /**
  * A simple 'hello world' plugin.
  */
 class BindingsGeneratorPlugin: Plugin<Project> {
-
     override fun apply(project: Project) {
         // Register a task
-        project.tasks.register("greeting") { task ->
-            task.doLast {
+        project.tasks.register("generateBindings", GenerateBindingsTask::class.java) { task ->
+            task.group = "build"
+            task.description = "Generates bindings for the Hydrozoa SDK"
+            task.doFirst {
                 println("Hello from plugin 'org.example.greeting'")
-
             }
         }
     }
@@ -104,33 +110,103 @@ abstract class GenerateBindingsTask : DefaultTask() {
     fun generateBindings() {
         val apiFile = apiFile.asFile.get()
         val api = Json.decodeFromString<SdkModule>(apiFile.readText())
+
+        var outDir = outputDirectory.asFile.get().toPath()
+        print("Out dir: $outDir")
+
+        var sourceRoot = SourceRoot(outDir)
+        sourceRoot.add(JavaSdkModule(api).generate(outDir))
+        sourceRoot.saveAll()
     }
 }
 
-class JavaSdkModule(val sdk: SdkModule) {
-    fun generate(): CompilationUnit {
-        val cu = CompilationUnit("dev.vexide.hydrozoa.sdk.generated")
+fun ClassOrInterfaceDeclaration.addStaticInitAnnotation(): ClassOrInterfaceDeclaration {
+    return this.addAnnotation("org.teavm.interop.StaticInit")
+}
 
-        var className = CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, sdk.name) + "Sdk"
+fun ClassOrInterfaceDeclaration.addPrivateConstructor(): ClassOrInterfaceDeclaration {
+    this.addConstructor(Keyword.PRIVATE)
+    return this
+}
+
+class JavaSdkModule(val sdk: SdkModule) {
+    fun generate(sourcesDir: Path): CompilationUnit {
+        val className = CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, sdk.name) + "Sdk"
+
+        var filename = sourcesDir
+        val packageName = "dev.vexide.hydrozoa.sdk.generated"
+        for (component in packageName.split(".")) {
+            filename = filename.resolve(component)
+        }
+
+        val cu = CompilationUnit(packageName)
+            .setStorage(filename.resolve("$className.java"))
+        print("Filename: ${cu.storage.getOrNull()?.path}")
+
         val bindingsClass = cu.addClass(className, Keyword.PUBLIC, Keyword.STATIC, Keyword.FINAL)
             .addSingleMemberAnnotation(
                 javax.annotation.processing.Generated::class.java,
                 StringLiteralExpr("dev.vexide.hydrozoa.plugin.bindings.BindingsGeneratorPlugin"))
-            .addAnnotation("org.teavm.interop.StaticInit")
+            .addStaticInitAnnotation()
+            .addPrivateConstructor()
+
+        var submodules = mutableMapOf<String, JavaSdkSubmodule>()
 
         for (item in sdk.items) {
-            JavaSdkItem(item).generate(bindingsClass)
+            var nameComponents = CaseFormat.LOWER_CAMEL
+                .to(CaseFormat.LOWER_UNDERSCORE, item.name)
+                .removePrefix(sdk.name + "_")
+                .split('_')
+                .toMutableList()
+
+            var submoduleName = CaseFormat.LOWER_UNDERSCORE
+                .to(CaseFormat.UPPER_CAMEL, nameComponents.removeAt(0))
+            var trimmedMethodName = CaseFormat.LOWER_UNDERSCORE
+                .to(CaseFormat.LOWER_CAMEL, nameComponents.joinToString("_"))
+
+            var submodule = submodules.getOrPut(submoduleName) {
+                JavaSdkSubmodule(submoduleName)
+            }
+            submodule.items.add(JavaSdkItem(item, trimmedMethodName))
+        }
+
+        for (submodule in submodules.values) {
+            submodule.generate(bindingsClass)
         }
 
         return cu
     }
 }
 
-class JavaSdkItem(val sdk: SdkItem) {
+class JavaSdkSubmodule(var submoduleName: String) {
+    var items = mutableListOf<JavaSdkItem>()
+
+    fun generate(parentClass: ClassOrInterfaceDeclaration) {
+        var submoduleClass = ClassOrInterfaceDeclaration(
+            Modifier.createModifierList(Keyword.PUBLIC, Keyword.STATIC, Keyword.FINAL),
+            false,
+            submoduleName
+        )
+            .addStaticInitAnnotation()
+            .addPrivateConstructor()
+
+        parentClass.addMember(submoduleClass)
+
+        for (item in items) {
+            item.generate(submoduleClass)
+        }
+    }
+}
+
+class JavaSdkItem(val sdk: SdkItem, val moduleName: String) {
     fun generate(bindingsClass: ClassOrInterfaceDeclaration) {
-        bindingsClass
-            .addMethod(sdk.name, Keyword.PUBLIC, Keyword.STATIC)
+        val rawMethod = bindingsClass
+            .addMethod(sdk.name + "_raw", Keyword.PRIVATE, Keyword.STATIC, Keyword.NATIVE)
             .setType(rawTypeFor(sdk.returns))
+
+        rawMethod.addAndGetAnnotation("org.teavm.interop.Import")
+            .addPair("module", StringLiteralExpr(moduleName))
+            .addPair("name", StringLiteralExpr(sdk.name))
     }
 
     private fun rawTypeFor(type: SdkItem.Type?): Type {

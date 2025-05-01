@@ -2,8 +2,8 @@ plugins {
     `java-library`
     `maven-publish`
     id("org.teavm.library")
+    id("dev.vexide.hydrozoa.plugin.bindings")
 }
-
 
 tasks.jar {
     manifest {
@@ -51,4 +51,19 @@ dependencies {
 
 tasks.javadoc {
     title = "VEX SDK"
+}
+
+tasks.generateBindings {
+    apiFile = rootProject.projectDir.resolve("hydrozoa_api.json")
+    outputDirectory = layout.buildDirectory.dir("generated/sources/bindings")
+}
+
+tasks.assemble {
+    dependsOn(tasks.generateBindings)
+}
+
+sourceSets.main {
+    java {
+        srcDir { tasks.generateBindings.get().outputDirectory }
+    }
 }
