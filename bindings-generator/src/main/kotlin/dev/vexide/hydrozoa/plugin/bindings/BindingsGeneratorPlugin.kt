@@ -304,6 +304,7 @@ class JavaSdkItem(val sdk: SdkItem, val module: JavaSdkModule, val methodName: S
         var method = bindingsClass
             .addMethod(methodName, Keyword.PUBLIC, Keyword.STATIC)
             .setType(module.javaTypeFor(sdk.returns, annotations = true))
+            .setJavadocComment(sdk.name)
 
         generateParams(sdk.params, method)
         generateBody(method, rawMethod)
