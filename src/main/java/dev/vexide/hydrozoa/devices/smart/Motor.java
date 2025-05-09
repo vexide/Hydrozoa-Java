@@ -2,9 +2,9 @@ package dev.vexide.hydrozoa.devices.smart;
 
 import dev.vexide.hydrozoa.CompetitionRuntime;
 import dev.vexide.hydrozoa.DeviceException;
-import dev.vexide.hydrozoa.sdk.V5MotorBrakeMode;
-import dev.vexide.hydrozoa.sdk.V5MotorEncoderUnits;
-import dev.vexide.hydrozoa.sdk.V5MotorGearset;
+import dev.vexide.hydrozoa.sdk.MotorBrakeMode;
+import dev.vexide.hydrozoa.sdk.MotorEncoderUnits;
+import dev.vexide.hydrozoa.sdk.MotorGearset;
 import dev.vexide.hydrozoa.sdk.VexSdk;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -35,9 +35,9 @@ public class Motor extends SmartDevice {
         this.direction = direction;
 
         var handle = this.port.deviceHandle();
-        VexSdk.Motor.vexDeviceMotorEncoderUnitsSet(handle, V5MotorEncoderUnits.Counts);
-        VexSdk.Motor.vexDeviceMotorReverseFlagSet(handle, direction.equals(Direction.REVERSE));
-        VexSdk.Motor.vexDeviceMotorGearingSet(handle, gearset.getRaw());
+        VexSdk.Device.setMotorEncoderUnits(handle, MotorEncoderUnits.Counts);
+        VexSdk.Device.setMotorReverseFlag(handle, direction.equals(Direction.REVERSE));
+        VexSdk.Device.setMotorGearing(handle, gearset.getRaw());
     }
 
     @Override

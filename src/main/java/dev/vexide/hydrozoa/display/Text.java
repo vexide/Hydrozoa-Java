@@ -71,7 +71,7 @@ public record Text(@NotNull String text, int x, int y, @NotNull Font font, HAlig
     @Contract(pure = true)
     public int height() {
         font.apply();
-        return VexSdk.Display.vexDisplayStringHeightGet(text);
+        return VexSdk.Display.getStringHeight(text);
     }
 
     /**
@@ -81,7 +81,7 @@ public record Text(@NotNull String text, int x, int y, @NotNull Font font, HAlig
     @Contract(pure = true)
     public int width() {
         font.apply();
-        return VexSdk.Display.vexDisplayStringWidthGet(text);
+        return VexSdk.Display.getStringWidth(text);
     }
 
     /**
@@ -92,9 +92,9 @@ public record Text(@NotNull String text, int x, int y, @NotNull Font font, HAlig
      * @param bgColor the color to draw the text's background in, or {@code null} for transparency
      */
     public void draw(@NotNull Display display, @NotNull Color fgColor, @Nullable Color bgColor) {
-        VexSdk.Display.vexDisplayForegroundColor(fgColor.raw());
+        VexSdk.Display.foregroundColor(fgColor.raw());
         if (bgColor != null) {
-            VexSdk.Display.vexDisplayBackgroundColor(bgColor.raw());
+            VexSdk.Display.backgroundColor(bgColor.raw());
         }
 
         var x = switch (hAlign) {
@@ -110,7 +110,7 @@ public record Text(@NotNull String text, int x, int y, @NotNull Font font, HAlig
         } + Display.HEADER_HEIGHT;
 
         font.apply();
-        VexSdk.Display.vexDisplayPrintf(x, y, bgColor != null, text);
+        VexSdk.Display.printf(x, y, bgColor != null, text);
     }
 
     /**

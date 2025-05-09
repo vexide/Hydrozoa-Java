@@ -177,7 +177,7 @@ fun modifierListOf(vararg modifiers: Keyword): NodeList<Modifier> {
     return Modifier.createModifierList(*modifiers)
 }
 
-const val PACKAGE_NAME = "dev.vexide.hydrozoa.sdk.generated"
+const val PACKAGE_NAME = "dev.vexide.hydrozoa.sdk"
 fun makeCompilationUnit(className: String, sourceRoot: SourceRoot): CompilationUnit {
     var filename = sourceRoot.root
     for (component in PACKAGE_NAME.split(".")) {

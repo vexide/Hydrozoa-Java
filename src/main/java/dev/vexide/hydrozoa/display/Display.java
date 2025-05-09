@@ -56,8 +56,8 @@ public class Display {
      */
     public void setRenderMode(@NotNull RenderMode renderMode) {
         switch (renderMode) {
-            case IMMEDIATE -> VexSdk.Display.vexDisplayDoubleBufferDisable();
-            case DOUBLE_BUFFERED -> VexSdk.Display.vexDisplayRender(false, false);
+            case IMMEDIATE -> VexSdk.Display.disableDoubleBuffer();
+            case DOUBLE_BUFFERED -> VexSdk.Display.render(false, false);
         }
         this.renderMode = renderMode;
     }

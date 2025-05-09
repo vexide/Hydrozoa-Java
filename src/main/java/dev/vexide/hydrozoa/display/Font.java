@@ -18,8 +18,8 @@ public record Font(@NotNull Size size, @NotNull Family family) {
     public static final Font DEFAULT = new Font(Size.MEDIUM, Family.MONOSPACE);
 
     void apply() {
-        VexSdk.Display.vexDisplayFontNamedSet(family.fontName());
-        VexSdk.Display.vexDisplayTextSize(size.numerator(), size.denominator());
+        VexSdk.Display.setFontNamed(family.fontName());
+        VexSdk.Display.textSize(size.numerator(), size.denominator());
     }
 
     /**

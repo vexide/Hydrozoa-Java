@@ -55,7 +55,7 @@ public final class CompetitionRuntime {
             while (true) {
                 var begin = Instant.now();
 
-                VexSdk.vexTasksRun();
+                VexSdk.Tasks.run();
 
                 var status = status();
 
@@ -106,7 +106,7 @@ public final class CompetitionRuntime {
      */
     @Contract(value = "-> new", pure = true)
     public static @NotNull Status status() {
-        return Status.fromBitflags(VexSdk.vexCompetitionStatus());
+        return Status.fromBitflags(VexSdk.Competition.status());
     }
 
     /**

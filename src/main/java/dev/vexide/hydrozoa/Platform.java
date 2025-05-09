@@ -25,7 +25,7 @@ public final class Platform {
      * flushed.
      */
     public static void yield() {
-        VexSdk.vexTasksRun();
+        VexSdk.Tasks.run();
     }
     private static final Duration FLUSH_TIMEOUT = Duration.ofMillis(15);
 
