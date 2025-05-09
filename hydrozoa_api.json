@@ -1487,5 +1487,106 @@
       }
     }
   ],
-  "enums": []
+  "enums": [
+    {
+      "name": "V5_ControllerId",
+      "underlying_type": {
+        "type": "Int"
+      },
+      "variants": {
+        "kControllerMaster": 0,
+        "kControllerPartner": 1
+      }
+    },
+    {
+      "name": "V5_ControllerStatus",
+      "underlying_type": {
+        "type": "Int"
+      },
+      "variants": {
+        "kV5ControllerOffline": 0,
+        "kV5ControllerTethered": 1,
+        "kV5ControllerVexnet": 2
+      }
+    },
+    {
+      "name": "V5_ControllerIndex",
+      "underlying_type": {
+        "type": "Int"
+      },
+      "variants": {
+        "Button8U": 14,
+        "AnaLeftY": 1,
+        "Button7L": 12,
+        "AnaSpare2": 5,
+        "AnaRightX": 2,
+        "AnaRightY": 3,
+        "Button6D": 9,
+        "ButtonAll": 20,
+        "Button5U": 6,
+        "Button6U": 8,
+        "AnaLeftX": 0,
+        "Button5D": 7,
+        "Button8D": 15,
+        "Button7R": 13,
+        "ButtonSEL": 18,
+        "Button7U": 10,
+        "BatteryLevel": 19,
+        "AnaSpare1": 4,
+        "Button7D": 11,
+        "Button8L": 16,
+        "BatteryCapacity": 22,
+        "Button8R": 17,
+        "Flags": 21
+      }
+    },
+    {
+      "name": "V5MotorBrakeMode",
+      "underlying_type": {
+        "type": "Int"
+      },
+      "variants": {
+        "kV5MotorBrakeModeHold": 2,
+        "kV5MotorBrakeModeBrake": 1,
+        "kV5MotorBrakeModeCoast": 0
+      }
+    },
+    {
+      "name": "V5MotorControlMode",
+      "underlying_type": {
+        "type": "Int"
+      },
+      "variants": {
+        "kMotorControlModeSERVO": 3,
+        "kMotorControlModePROFILE": 4,
+        "kMotorControlModeUNDEFINED": 6,
+        "kMotorControlModeVELOCITY": 5,
+        "kMotorControlModeBRAKE": 1,
+        "kMotorControlModeOFF": 0,
+        "kMotorControlModeHOLD": 2
+      }
+    },
+    {
+      "name": "V5MotorEncoderUnits",
+      "underlying_type": {
+        "type": "Int"
+      },
+      "variants": {
+        "kMotorEncoderCounts": 2,
+        "kMotorEncoderRotations": 1,
+        "kMotorEncoderDegrees": 0
+      }
+    },
+    {
+      "name": "V5MotorGearset",
+      "underlying_type": {
+        "type": "Int"
+      },
+      "variants": {
+        "kMotorGearSet_36": 0,
+        "kMotorGearSet_06": 2,
+        "kMotorGearSet_18": 1
+      }
+    }
+  ]
 }
