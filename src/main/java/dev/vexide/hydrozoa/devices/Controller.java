@@ -2,10 +2,9 @@ package dev.vexide.hydrozoa.devices;
 
 import dev.vexide.hydrozoa.CompetitionRuntime;
 import dev.vexide.hydrozoa.Peripherals;
-import dev.vexide.hydrozoa.sdk.V5_ControllerId;
-import dev.vexide.hydrozoa.sdk.V5_ControllerIndex;
-import dev.vexide.hydrozoa.sdk.V5_ControllerStatus;
+import dev.vexide.hydrozoa.sdk.VexSdk.Controller.Index;
 import dev.vexide.hydrozoa.sdk.VexSdk;
+
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -49,8 +48,8 @@ public class Controller {
      * @return {@code true} if the controller is connected, {@code false} otherwise
      */
     public boolean connected() {
-        var status = VexSdk.Controller.vexControllerConnectionStatusGet(id.raw());
-        return !status.equals(V5_ControllerStatus.kV5ControllerOffline);
+        var status = VexSdk.Controller.getConnectionStatus(id.raw());
+        return status != VexSdk.Controller.Status.OFFLINE;
     }
 
     /**
@@ -62,7 +61,7 @@ public class Controller {
         if (!CompetitionRuntime.mode().equals(CompetitionRuntime.Mode.Driver) || !connected()) {
             return Optional.empty();
         }
-        var state = new State(new JoystickState((byte) VexSdk.Controller.vexControllerGet(id.raw(), V5_ControllerIndex.AnaLeftX), (byte) VexSdk.Controller.vexControllerGet(id.raw(), V5_ControllerIndex.AnaLeftY)), new JoystickState((byte) VexSdk.Controller.vexControllerGet(id.raw(), V5_ControllerIndex.AnaRightX), (byte) VexSdk.Controller.vexControllerGet(id.raw(), V5_ControllerIndex.AnaRightY)), new ButtonState(VexSdk.Controller.vexControllerGet(id.raw(), V5_ControllerIndex.ButtonA) == 1, previousState.a().pressed()), new ButtonState(VexSdk.Controller.vexControllerGet(id.raw(), V5_ControllerIndex.ButtonB) == 1, previousState.b().pressed()), new ButtonState(VexSdk.Controller.vexControllerGet(id.raw(), V5_ControllerIndex.ButtonX) == 1, previousState.x().pressed()), new ButtonState(VexSdk.Controller.vexControllerGet(id.raw(), V5_ControllerIndex.ButtonY) == 1, previousState.y().pressed()), new ButtonState(VexSdk.Controller.vexControllerGet(id.raw(), V5_ControllerIndex.ButtonUp) == 1, previousState.up().pressed()), new ButtonState(VexSdk.Controller.vexControllerGet(id.raw(), V5_ControllerIndex.ButtonDown) == 1, previousState.down().pressed()), new ButtonState(VexSdk.Controller.vexControllerGet(id.raw(), V5_ControllerIndex.ButtonLeft) == 1, previousState.left().pressed()), new ButtonState(VexSdk.Controller.vexControllerGet(id.raw(), V5_ControllerIndex.ButtonRight) == 1, previousState.right().pressed()), new ButtonState(VexSdk.Controller.vexControllerGet(id.raw(), V5_ControllerIndex.ButtonL1) == 1, previousState.l1().pressed()), new ButtonState(VexSdk.Controller.vexControllerGet(id.raw(), V5_ControllerIndex.ButtonL2) == 1, previousState.l2().pressed()), new ButtonState(VexSdk.Controller.vexControllerGet(id.raw(), V5_ControllerIndex.ButtonR1) == 1, previousState.r1().pressed()), new ButtonState(VexSdk.Controller.vexControllerGet(id.raw(), V5_ControllerIndex.ButtonR2) == 1, previousState.r2().pressed()));
+        var state = new State(new JoystickState((byte) VexSdk.Controller.getController(id.raw(), VexSdk.Controller.Index.ANA_LEFT_X), (byte) VexSdk.Controller.getController(id.raw(), Index.ANA_LEFT_Y)), new JoystickState((byte) VexSdk.Controller.getController(id.raw(), Index.ANA_RIGHT_X), (byte) VexSdk.Controller.getController(id.raw(), Index.ANA_RIGHT_Y)), new ButtonState(VexSdk.Controller.getController(id.raw(), Index.BUTTON_A) == 1, previousState.a().pressed()), new ButtonState(VexSdk.Controller.getController(id.raw(), Index.BUTTON_B) == 1, previousState.b().pressed()), new ButtonState(VexSdk.Controller.getController(id.raw(), Index.BUTTON_X) == 1, previousState.x().pressed()), new ButtonState(VexSdk.Controller.getController(id.raw(), Index.BUTTON_Y) == 1, previousState.y().pressed()), new ButtonState(VexSdk.Controller.getController(id.raw(), Index.BUTTON_UP) == 1, previousState.up().pressed()), new ButtonState(VexSdk.Controller.getController(id.raw(), Index.BUTTON_DOWN) == 1, previousState.down().pressed()), new ButtonState(VexSdk.Controller.getController(id.raw(), Index.BUTTON_LEFT) == 1, previousState.left().pressed()), new ButtonState(VexSdk.Controller.getController(id.raw(), Index.BUTTON_RIGHT) == 1, previousState.right().pressed()), new ButtonState(VexSdk.Controller.getController(id.raw(), Index.BUTTON_L1) == 1, previousState.l1().pressed()), new ButtonState(VexSdk.Controller.getController(id.raw(), Index.BUTTON_L2) == 1, previousState.l2().pressed()), new ButtonState(VexSdk.Controller.getController(id.raw(), Index.BUTTON_R1) == 1, previousState.r1().pressed()), new ButtonState(VexSdk.Controller.getController(id.raw(), Index.BUTTON_R2) == 1, previousState.r2().pressed()));
         previousState = state;
         return Optional.of(state);
     }
@@ -86,10 +85,11 @@ public class Controller {
          *
          * @return the raw controller ID value
          */
-        @NotNull V5_ControllerId raw() {
+        @NotNull
+        VexSdk.Controller.Id raw() {
             return switch (this) {
-                case Primary -> V5_ControllerId.kControllerMaster;
-                case Partner -> V5_ControllerId.kControllerPartner;
+                case Primary -> VexSdk.Controller.Id.MASTER;
+                case Partner -> VexSdk.Controller.Id.PARTNER;
             };
         }
     }
@@ -112,9 +112,10 @@ public class Controller {
      * @param r1         the state of the R1 button
      * @param r2         the state of the R2 button
      */
-    public record State(@NotNull JoystickState leftStick, @NotNull JoystickState rightStick, @NotNull ButtonState a,
-                        @NotNull ButtonState b, @NotNull ButtonState x, @NotNull ButtonState y, @NotNull ButtonState up,
-                        @NotNull ButtonState down, @NotNull ButtonState left, @NotNull ButtonState right,
+    public record State(@NotNull JoystickState leftStick, @NotNull JoystickState rightStick,
+                        @NotNull ButtonState a, @NotNull ButtonState b, @NotNull ButtonState x,
+                        @NotNull ButtonState y, @NotNull ButtonState up, @NotNull ButtonState down,
+                        @NotNull ButtonState left, @NotNull ButtonState right,
                         @NotNull ButtonState l1, @NotNull ButtonState l2, @NotNull ButtonState r1,
                         @NotNull ButtonState r2) {
         /**

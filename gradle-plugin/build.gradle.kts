@@ -18,9 +18,10 @@ gradlePlugin {
     website = "https://github.com/vexide/Hydrozoa-Java/tree/main/gradle-plugin"
     vcsUrl = "https://github.com/vexide/Hydrozoa-Java.git"
     plugins {
-        matching { it.name == "dev.vexide.hydrozoa" }.configureEach {
+        create("hydrozoaPlugin") {
             id = "dev.vexide.hydrozoa"
             displayName = "Hydrozoa Gradle plugin"
+            implementationClass = "dev.vexide.hydrozoa.gradle.HydrozoaPlugin"
             description = "Build & upload Gradle projects to VEX V5 robots"
             tags = listOf("vex", "robot", "robotics", "v5", "vexide", "hydrozoa")
         }

@@ -61,7 +61,9 @@ allprojects {
         withSourcesJar()
         withJavadocJar()
 
-        sourceCompatibility = JavaVersion.VERSION_21
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(21))
+        }
     }
 
     repositories {
