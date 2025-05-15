@@ -250,7 +250,7 @@ class JavaSdkModule(val sdk: SdkModule) {
                     if (underlyingType != null) return javaTypeFor(underlyingType)
                 }
 
-                ClassOrInterfaceType(null, JavaSdkEnum.generateEnumName(type.name))
+                ClassOrInterfaceType(null, JavaSdkEnum.generateEnumName(type.name, sdk.name))
                     .apply {
                         if (annotations) {
                             addMarkerAnnotation("org.jetbrains.annotations.NotNull")
@@ -383,7 +383,7 @@ class JavaSdkItem(val sdk: SdkItem, val module: JavaSdkModule, val methodName: S
 
 class JavaSdkEnum(val sdk: SdkEnum, val module: JavaSdkModule) {
     fun generate(sourceRoot: SourceRoot) {
-        val name = generateEnumName(sdk.name)
+        val name = generateEnumName(sdk.name, module.sdk.name)
 
         val cu = makeCompilationUnit(name, sourceRoot)
             .addHydrozoaGeneratedComment()
@@ -431,10 +431,22 @@ class JavaSdkEnum(val sdk: SdkEnum, val module: JavaSdkModule) {
     }
 
     companion object {
-        fun generateEnumName(name: String): String =
-            name
+        fun generateEnumName(name: String, moduleName: String): String {
+            val name = name
                 .removePrefix("V5_")
                 .removePrefix("V5")
+
+            val components = ArrayDeque(
+                CaseFormat.LOWER_CAMEL
+                    .to(CaseFormat.LOWER_UNDERSCORE, name)
+                    .split('_')
+            )
+
+            components.addFirst(moduleName)
+
+            return CaseFormat.LOWER_UNDERSCORE
+                .to(CaseFormat.UPPER_CAMEL, components.joinToString("_"))
+        }
 
         fun generateMemberName(name: String, enumName: String): String {
             val components = ArrayDeque(CaseFormat.LOWER_CAMEL
@@ -443,6 +455,9 @@ class JavaSdkEnum(val sdk: SdkEnum, val module: JavaSdkModule) {
             val enumComponents = ArrayDeque(CaseFormat.LOWER_CAMEL
                 .to(CaseFormat.LOWER_UNDERSCORE, enumName)
                 .split('_'))
+
+            // Remove module prefix from enum name
+            enumComponents.removeFirst()
 
             for (redundantComponent in arrayOf("k", "v5")) {
                 if (components.firstOrNull() == redundantComponent) {
@@ -460,8 +475,7 @@ class JavaSdkEnum(val sdk: SdkEnum, val module: JavaSdkModule) {
                 }
             }
 
-            return CaseFormat.LOWER_UNDERSCORE
-                .to(CaseFormat.UPPER_CAMEL, components.joinToString("_"))
+            return components.joinToString("_").uppercase()
         }
     }
 }

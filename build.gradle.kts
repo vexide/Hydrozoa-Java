@@ -61,7 +61,13 @@ allprojects {
         withSourcesJar()
         withJavadocJar()
 
-        sourceCompatibility = JavaVersion.VERSION_21
+        sourceCompatibility = JavaVersion.VERSION_23
+        targetCompatibility = JavaVersion.VERSION_23
+
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(23))
+            vendor.set(JvmVendorSpec.AMAZON)
+        }
     }
 
     repositories {

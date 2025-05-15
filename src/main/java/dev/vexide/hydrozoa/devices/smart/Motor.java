@@ -2,9 +2,9 @@ package dev.vexide.hydrozoa.devices.smart;
 
 import dev.vexide.hydrozoa.CompetitionRuntime;
 import dev.vexide.hydrozoa.DeviceException;
-import dev.vexide.hydrozoa.sdk.MotorBrakeMode;
-import dev.vexide.hydrozoa.sdk.MotorEncoderUnits;
-import dev.vexide.hydrozoa.sdk.MotorGearset;
+import dev.vexide.hydrozoa.sdk.VexMotorBrakeMode;
+import dev.vexide.hydrozoa.sdk.VexMotorEncoderUnits;
+import dev.vexide.hydrozoa.sdk.VexMotorGearset;
 import dev.vexide.hydrozoa.sdk.VexSdk;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -35,7 +35,7 @@ public class Motor extends SmartDevice {
         this.direction = direction;
 
         var handle = this.port.deviceHandle();
-        VexSdk.Device.setMotorEncoderUnits(handle, MotorEncoderUnits.Counts);
+        VexSdk.Device.setMotorEncoderUnits(handle, VexMotorEncoderUnits.COUNTS);
         VexSdk.Device.setMotorReverseFlag(handle, direction.equals(Direction.REVERSE));
         VexSdk.Device.setMotorGearing(handle, gearset.getRaw());
     }
@@ -61,7 +61,7 @@ public class Motor extends SmartDevice {
      */
     public void setGearset(@NotNull Gearset gearset) {
         this.gearset = gearset;
-        VexSdk.Motor.vexDeviceMotorGearingSet(port.deviceHandle(), gearset.getRaw());
+        VexSdk.Device.setMotorGearing(port.deviceHandle(), gearset.getRaw());
     }
 
     /**
@@ -80,7 +80,7 @@ public class Motor extends SmartDevice {
      */
     public void setDirection(@NotNull Direction direction) {
         this.direction = direction;
-        VexSdk.Motor.vexDeviceMotorReverseFlagSet(port.deviceHandle(), direction.equals(Direction.REVERSE));
+        VexSdk.Device.setMotorReverseFlag(port.deviceHandle(), direction.equals(Direction.REVERSE));
     }
 
     /**
@@ -158,7 +158,7 @@ public class Motor extends SmartDevice {
     public @NotNull EncoderPosition getPosition() throws DeviceException {
         validateConnection();
 
-        double pos = VexSdk.Motor.vexDeviceMotorPositionGet(port.deviceHandle());
+        double pos = VexSdk.Device.getMotorPosition(port.deviceHandle());
         return EncoderPosition.ofTicks((int) pos, gearset.getTicksPerRevolution());
     }
 
@@ -171,7 +171,7 @@ public class Motor extends SmartDevice {
     public void setPosition(@NotNull EncoderPosition position) throws DeviceException {
         validateConnection();
 
-        VexSdk.Motor.vexDeviceMotorPositionSet(
+        VexSdk.Device.setMotorPosition(
                 port.deviceHandle(),
                 position.ticks(gearset.getTicksPerRevolution())
         );
@@ -184,19 +184,19 @@ public class Motor extends SmartDevice {
         /**
          * The red (100 RPM) gearset.
          */
-        Red(V5MotorGearset.GearSet_06),
+        Red(VexMotorGearset.GEAR_SET_06),
         /**
          * The green (200 RPM) gearset.
          */
-        Green(V5MotorGearset.GearSet_18),
+        Green(VexMotorGearset.GEAR_SET_18),
         /**
          * The blue (600 RPM) gearset.
          */
-        Blue(V5MotorGearset.GearSet_36);
+        Blue(VexMotorGearset.GEAR_SET_36);
 
-        private final V5MotorGearset raw;
+        private final VexMotorGearset raw;
 
-        Gearset(V5MotorGearset raw) {
+        Gearset(VexMotorGearset raw) {
             this.raw = raw;
         }
 
@@ -206,7 +206,7 @@ public class Motor extends SmartDevice {
          * @return the raw gearset value
          */
         @Contract(pure = true)
-        public V5MotorGearset getRaw() {
+        public VexMotorGearset getRaw() {
             return raw;
         }
 
@@ -273,19 +273,19 @@ public class Motor extends SmartDevice {
         /**
          * The motor does not actively brake, allowing it to coast to a stop.
          */
-        COAST(V5MotorBrakeMode.Coast),
+        Coast(VexMotorBrakeMode.COAST),
         /**
          * The motor uses regenerative braking to slow down faster.
          */
-        BRAKE(V5MotorBrakeMode.Brake),
+        Brake(VexMotorBrakeMode.BRAKE),
         /**
          * The motor uses its internal PID controller to hold its current position.
          */
-        HOLD(V5MotorBrakeMode.Hold);
+        Hold(VexMotorBrakeMode.HOLD);
 
-        private final V5MotorBrakeMode raw;
+        private final VexMotorBrakeMode raw;
 
-        BrakeMode(V5MotorBrakeMode raw) {
+        BrakeMode(VexMotorBrakeMode raw) {
             this.raw = raw;
         }
 
@@ -295,7 +295,7 @@ public class Motor extends SmartDevice {
          * @return the raw brake mode value
          */
         @Contract(pure = true)
-        public V5MotorBrakeMode getRaw() {
+        public VexMotorBrakeMode getRaw() {
             return raw;
         }
     }

@@ -4,8 +4,7 @@ import dev.vexide.hydrozoa.DeviceException;
 import dev.vexide.hydrozoa.Peripherals;
 import dev.vexide.hydrozoa.devices.DeviceDisconnectedException;
 import dev.vexide.hydrozoa.devices.IncorrectDeviceException;
-import dev.vexide.hydrozoa.sdk.V5_Device;
-import dev.vexide.hydrozoa.sdk.V5_DeviceType;
+import dev.vexide.hydrozoa.sdk.VexDevice;
 import dev.vexide.hydrozoa.sdk.VexSdk;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Contract;
@@ -81,9 +80,9 @@ public final class SmartPort {
      */
     @Contract(" -> new")
     @NotNull
-    V5_Device deviceHandle() {
+    VexDevice deviceHandle() {
         validate();
-        return VexSdk.Device.vexDeviceGetByIndex(getIndex());
+        return new VexDevice(VexSdk.Device.getByIndex(getIndex()));
     }
 
     /**

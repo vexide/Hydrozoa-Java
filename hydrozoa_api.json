@@ -481,7 +481,7 @@
         {
           "name": "bOpaque",
           "type": {
-            "type": "Int"
+            "type": "Bool"
           }
         },
         {
@@ -638,6 +638,46 @@
       "returns": null
     },
     {
+      "name": "vexDisplayStringWidthGet",
+      "params": [
+        {
+          "name": "string",
+          "type": {
+            "type": "StringPtr"
+          }
+        }
+      ],
+      "returns": {
+        "type": "Int"
+      }
+    },
+    {
+      "name": "vexDisplayStringHeightGet",
+      "params": [
+        {
+          "name": "string",
+          "type": {
+            "type": "StringPtr"
+          }
+        }
+      ],
+      "returns": {
+        "type": "Int"
+      }
+    },
+    {
+      "name": "vexDisplayFontNamedSet",
+      "params": [
+        {
+          "name": "string",
+          "type": {
+            "type": "StringPtr"
+          }
+        }
+      ],
+      "returns": null
+    },
+    {
       "name": "vexControllerGet",
       "params": [
         {
@@ -695,7 +735,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         },
         {
@@ -713,7 +754,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         }
       ],
@@ -727,7 +769,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         }
       ],
@@ -741,7 +784,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         }
       ],
@@ -755,7 +799,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         },
         {
@@ -774,7 +819,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         }
       ],
@@ -789,7 +835,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         },
         {
@@ -807,7 +854,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         }
       ],
@@ -821,7 +869,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         },
         {
@@ -839,7 +888,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         }
       ],
@@ -853,7 +903,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         }
       ],
@@ -867,7 +918,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         }
       ],
@@ -881,7 +933,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         }
       ],
@@ -895,7 +948,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         }
       ],
@@ -909,7 +963,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         }
       ],
@@ -923,7 +978,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         }
       ],
@@ -937,7 +993,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         }
       ],
@@ -951,7 +1008,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         }
       ],
@@ -965,7 +1023,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         }
       ],
@@ -979,7 +1038,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         },
         {
@@ -997,7 +1057,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         }
       ],
@@ -1011,7 +1072,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         },
         {
@@ -1030,7 +1092,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         }
       ],
@@ -1045,7 +1108,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         },
         {
@@ -1064,7 +1128,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         }
       ],
@@ -1079,7 +1144,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         },
         {
@@ -1097,7 +1163,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         }
       ],
@@ -1111,7 +1178,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         }
       ],
@@ -1123,7 +1191,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         }
       ],
@@ -1137,7 +1206,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         },
         {
@@ -1155,7 +1225,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         },
         {
@@ -1179,7 +1250,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         },
         {
@@ -1203,7 +1275,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         }
       ],
@@ -1217,7 +1290,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         }
       ],
@@ -1231,7 +1305,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         },
         {
@@ -1249,7 +1324,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         }
       ],
@@ -1263,7 +1339,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         },
         {
@@ -1282,7 +1359,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         }
       ],
@@ -1297,7 +1375,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         },
         {
@@ -1315,7 +1394,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         }
       ],
@@ -1329,7 +1409,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         },
         {
@@ -1347,7 +1428,8 @@
         {
           "name": "device",
           "type": {
-            "type": "Int"
+            "type": "Named",
+            "name": "V5_Device"
           }
         },
         {
@@ -1504,9 +1586,9 @@
         "type": "Int"
       },
       "variants": {
-        "kV5ControllerOffline": 0,
+        "kV5ControllerVexnet": 2,
         "kV5ControllerTethered": 1,
-        "kV5ControllerVexnet": 2
+        "kV5ControllerOffline": 0
       }
     },
     {
@@ -1515,29 +1597,45 @@
         "type": "Int"
       },
       "variants": {
-        "Button8U": 14,
-        "AnaLeftY": 1,
-        "Button7L": 12,
-        "AnaSpare2": 5,
-        "AnaRightX": 2,
+        "Axis4": 0,
         "AnaRightY": 3,
-        "Button6D": 9,
-        "ButtonAll": 20,
-        "Button5U": 6,
-        "Button6U": 8,
-        "AnaLeftX": 0,
-        "Button5D": 7,
-        "Button8D": 15,
+        "ButtonL1": 6,
+        "ButtonRight": 13,
         "Button7R": 13,
-        "ButtonSEL": 18,
-        "Button7U": 10,
-        "BatteryLevel": 19,
-        "AnaSpare1": 4,
-        "Button7D": 11,
+        "AnaLeftX": 0,
+        "ButtonA": 17,
+        "AnaSpare2": 5,
+        "Button7L": 12,
+        "Button5U": 6,
+        "ButtonY": 16,
+        "Axis3": 1,
         "Button8L": 16,
-        "BatteryCapacity": 22,
+        "ButtonSEL": 18,
+        "ButtonUp": 10,
+        "Axis1": 2,
+        "Button8U": 14,
+        "ButtonR1": 8,
+        "BatteryLevel": 19,
+        "ButtonDown": 11,
+        "AnaRightX": 2,
+        "Button7D": 11,
+        "Button6D": 9,
+        "Axis2": 3,
+        "AnaLeftY": 1,
+        "Button5D": 7,
+        "ButtonAll": 20,
+        "ButtonL2": 7,
+        "ButtonX": 14,
+        "Flags": 21,
+        "AnaSpare1": 4,
+        "ButtonLeft": 12,
+        "Button6U": 8,
         "Button8R": 17,
-        "Flags": 21
+        "Button8D": 15,
+        "Button7U": 10,
+        "ButtonR2": 9,
+        "ButtonB": 15,
+        "BatteryCapacity": 22
       }
     },
     {
@@ -1546,9 +1644,9 @@
         "type": "Int"
       },
       "variants": {
-        "kV5MotorBrakeModeHold": 2,
+        "kV5MotorBrakeModeCoast": 0,
         "kV5MotorBrakeModeBrake": 1,
-        "kV5MotorBrakeModeCoast": 0
+        "kV5MotorBrakeModeHold": 2
       }
     },
     {
@@ -1557,12 +1655,12 @@
         "type": "Int"
       },
       "variants": {
-        "kMotorControlModeSERVO": 3,
-        "kMotorControlModePROFILE": 4,
         "kMotorControlModeUNDEFINED": 6,
+        "kMotorControlModeSERVO": 3,
         "kMotorControlModeVELOCITY": 5,
-        "kMotorControlModeBRAKE": 1,
         "kMotorControlModeOFF": 0,
+        "kMotorControlModeBRAKE": 1,
+        "kMotorControlModePROFILE": 4,
         "kMotorControlModeHOLD": 2
       }
     },
@@ -1583,10 +1681,17 @@
         "type": "Int"
       },
       "variants": {
+        "kMotorGearSet_18": 1,
         "kMotorGearSet_36": 0,
-        "kMotorGearSet_06": 2,
-        "kMotorGearSet_18": 1
+        "kMotorGearSet_06": 2
       }
+    },
+    {
+      "name": "V5_Device",
+      "underlying_type": {
+        "type": "Int"
+      },
+      "variants": {}
     }
   ]
 }

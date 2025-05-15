@@ -1,7 +1,7 @@
 package dev.vexide.hydrozoa.devices.smart;
 
 import dev.vexide.hydrozoa.DeviceException;
-import dev.vexide.hydrozoa.sdk.V5_DeviceType;
+import dev.vexide.hydrozoa.sdk.VexDevice;
 import org.jetbrains.annotations.NotNull;
 
 import java.time.Duration;

@@ -69,7 +69,7 @@ public class Display {
      */
     public void render() {
         if (renderMode == RenderMode.DOUBLE_BUFFERED) {
-            VexSdk.Display.vexDisplayRender(false, false);
+            VexSdk.Display.render(false, false);
         }
     }
 
