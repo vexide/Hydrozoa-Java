@@ -5,11 +5,13 @@ import dev.vexide.hydrozoa.Peripherals;
 import dev.vexide.hydrozoa.devices.DeviceDisconnectedException;
 import dev.vexide.hydrozoa.devices.IncorrectDeviceException;
 import dev.vexide.hydrozoa.sdk.VexDevice;
+import dev.vexide.hydrozoa.sdk.VexDeviceType;
 import dev.vexide.hydrozoa.sdk.VexSdk;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.teavm.interop.Address;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -18,6 +20,8 @@ import java.util.Optional;
  * A Smart Port on the VEX V5 Robot Brain.
  */
 public final class SmartPort {
+    private static final int MAX_PORTS = 32;
+
     private final int number;
     private @Nullable Peripherals.Key key;
 
@@ -90,10 +94,9 @@ public final class SmartPort {
      * @return the device's type, if a device is connected
      */
     public Optional<SmartDevice.Type> deviceType() {
-        var deviceTypes = new byte[VexSdk.Device.V5_MAX_DEVICE_PORTS];
-        VexSdk.Device.vexDeviceGetStatus(deviceTypes);
-
-        return SmartDevice.Type.fromRaw(new V5_DeviceType(deviceTypes[getIndex()]));
+        var deviceTypes = new byte[MAX_PORTS];
+        VexSdk.Device.getStatus(Address.ofData(deviceTypes));
+        return SmartDevice.Type.fromRaw(new VexDeviceType(deviceTypes[getIndex()]));
     }
 
     /**

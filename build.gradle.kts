@@ -78,7 +78,7 @@ allprojects {
         source = sourceSets.main.get().allJava
         options
             .windowTitle("Hydrozoa Docs")
-            .stylesheetFile(rootProject.layout.projectDirectory.file("docs.css").asFile)
+//            .stylesheetFile(rootProject.layout.projectDirectory.file("docs.css").asFile)
     }
 }
 
@@ -113,6 +113,12 @@ dependencies {
 
 tasks.javadoc {
     title = "Hydrozoa"
+}
+
+tasks.jar {
+    manifest {
+        attributes("Automatic-Module-Name" to "dev.vexide.hydrozoa")
+    }
 }
 
 idea {

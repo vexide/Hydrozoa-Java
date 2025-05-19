@@ -2,6 +2,7 @@ package dev.vexide.hydrozoa.devices.smart;
 
 import dev.vexide.hydrozoa.DeviceException;
 import dev.vexide.hydrozoa.sdk.VexDevice;
+import dev.vexide.hydrozoa.sdk.VexDeviceType;
 import org.jetbrains.annotations.NotNull;
 
 import java.time.Duration;
@@ -91,67 +92,67 @@ public abstract class SmartDevice {
         /**
          * A VEX V5 Smart Motor.
          */
-        MOTOR(V5_DeviceType.MotorSensor),
+        MOTOR(VexDeviceType.MOTOR_SENSOR),
         /**
          * A VEX Rotation Sensor.
          */
-        ROTATION(V5_DeviceType.AbsEncSensor),
+        ROTATION(VexDeviceType.ABS_ENC_SENSOR),
         /**
          * A VEX Inertial Sensor.
          */
-        IMU(V5_DeviceType.ImuSensor),
+        IMU(VexDeviceType.IMU_SENSOR),
         /**
          * A VEX Distance Sensor.
          */
-        DISTANCE(V5_DeviceType.DistanceSensor),
+        DISTANCE(VexDeviceType.DISTANCE_SENSOR),
         /**
          * A VEX Vision Sensor.
          */
-        VISION(V5_DeviceType.VisionSensor),
+        VISION(VexDeviceType.VISION_SENSOR),
         /**
          * A VEX AI Vision Sensor.
          */
-        AI_VISION(V5_DeviceType.AiVisionSensor),
+        AI_VISION(VexDeviceType.AI_VISION_SENSOR),
         /**
          * A VEX Electromagnet.
          */
-        ELECTROMAGNET(V5_DeviceType.MagnetSensor),
+        ELECTROMAGNET(VexDeviceType.MAGNET_SENSOR),
         /**
          * A VEX CTE Workcell Signal Tower.
          */
-        LIGHT_TOWER(V5_DeviceType.LightTowerSensor),
+        LIGHT_TOWER(VexDeviceType.LIGHT_TOWER_SENSOR),
         /**
          * A VEX CTE Workcell 6-Axis Arm.
          */
-        ARM(V5_DeviceType.ArmDevice),
+        ARM(VexDeviceType.ARM_DEVICE),
         /**
          * A VEX Optical Sensor.
          */
-        OPTICAL(V5_DeviceType.OpticalSensor),
+        OPTICAL(VexDeviceType.OPTICAL_SENSOR),
         /**
          * A VEX V5 Game Positioning System Sensor.
          */
-        GPS(V5_DeviceType.GpsSensor),
+        GPS(VexDeviceType.GPS_SENSOR),
         /**
          * A VEX V5 Robot Radio.
          */
-        RADIO(V5_DeviceType.RadioSensor),
+        RADIO(VexDeviceType.RADIO_SENSOR),
         /**
          * A VEX Analog/Digital Input Sensor.
          */
-        ADI(V5_DeviceType.AdiSensor),
+        ADI(VexDeviceType.ADI_SENSOR),
         /**
          * A generic, unbranded serial device.
          */
-        GENERIC_SERIAL(V5_DeviceType.GenericSerial),
+        GENERIC_SERIAL(VexDeviceType.GENERIC_SERIAL),
         /**
          * An unknown device type.
          */
-        UNKNOWN(V5_DeviceType.UndefinedSensor);
+        UNKNOWN(VexDeviceType.UNDEFINED_SENSOR);
 
-        private final V5_DeviceType raw;
+        private final VexDeviceType raw;
 
-        Type(V5_DeviceType raw) {
+        Type(VexDeviceType raw) {
             this.raw = raw;
         }
 
@@ -161,23 +162,23 @@ public abstract class SmartDevice {
          * @param raw the raw device type
          * @return the high-level device type, or an empty optional if the raw type is not recognized
          */
-        public static Optional<Type> fromRaw(@NotNull V5_DeviceType raw) {
-            return switch (raw.value()) {
-                case V5_DeviceType.kDeviceTypeNoSensor -> Optional.empty();
-                case V5_DeviceType.kDeviceTypeMotorSensor -> Optional.of(MOTOR);
-                case V5_DeviceType.kDeviceTypeAbsEncSensor -> Optional.of(ROTATION);
-                case V5_DeviceType.kDeviceTypeImuSensor -> Optional.of(IMU);
-                case V5_DeviceType.kDeviceTypeDistanceSensor -> Optional.of(DISTANCE);
-                case V5_DeviceType.kDeviceTypeVisionSensor -> Optional.of(VISION);
-                case V5_DeviceType.kDeviceTypeAiVisionSensor -> Optional.of(AI_VISION);
-                case V5_DeviceType.kDeviceTypeMagnetSensor -> Optional.of(ELECTROMAGNET);
-                case V5_DeviceType.kDeviceTypeLightTowerSensor -> Optional.of(LIGHT_TOWER);
-                case V5_DeviceType.kDeviceTypeArmDevice -> Optional.of(ARM);
-                case V5_DeviceType.kDeviceTypeOpticalSensor -> Optional.of(OPTICAL);
-                case V5_DeviceType.kDeviceTypeGpsSensor -> Optional.of(GPS);
-                case V5_DeviceType.kDeviceTypeRadioSensor -> Optional.of(RADIO);
-                case V5_DeviceType.kDeviceTypeAdiSensor -> Optional.of(ADI);
-                case V5_DeviceType.kDeviceTypeGenericSerial -> Optional.of(GENERIC_SERIAL);
+        public static Optional<Type> fromRaw(@NotNull VexDeviceType raw) {
+            return switch (raw.getRawValue()) {
+                case VexDeviceType.kDeviceTypeNoSensor -> Optional.empty();
+                case VexDeviceType.kDeviceTypeMotorSensor -> Optional.of(MOTOR);
+                case VexDeviceType.kDeviceTypeAbsEncSensor -> Optional.of(ROTATION);
+                case VexDeviceType.kDeviceTypeImuSensor -> Optional.of(IMU);
+                case VexDeviceType.kDeviceTypeDistanceSensor -> Optional.of(DISTANCE);
+                case VexDeviceType.kDeviceTypeVisionSensor -> Optional.of(VISION);
+                case VexDeviceType.kDeviceTypeAiVisionSensor -> Optional.of(AI_VISION);
+                case VexDeviceType.kDeviceTypeMagnetSensor -> Optional.of(ELECTROMAGNET);
+                case VexDeviceType.kDeviceTypeLightTowerSensor -> Optional.of(LIGHT_TOWER);
+                case VexDeviceType.kDeviceTypeArmDevice -> Optional.of(ARM);
+                case VexDeviceType.kDeviceTypeOpticalSensor -> Optional.of(OPTICAL);
+                case VexDeviceType.kDeviceTypeGpsSensor -> Optional.of(GPS);
+                case VexDeviceType.kDeviceTypeRadioSensor -> Optional.of(RADIO);
+                case VexDeviceType.kDeviceTypeAdiSensor -> Optional.of(ADI);
+                case VexDeviceType.kDeviceTypeGenericSerial -> Optional.of(GENERIC_SERIAL);
                 default -> Optional.of(UNKNOWN);
             };
         }
@@ -187,7 +188,7 @@ public abstract class SmartDevice {
          *
          * @return the raw device type
          */
-        public V5_DeviceType getRaw() {
+        public VexDeviceType getRaw() {
             return raw;
         }
     }

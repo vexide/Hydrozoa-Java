@@ -1448,6 +1448,24 @@
       "returns": null
     },
     {
+      "name": "vexDeviceGetStatus",
+      "params": [
+        {
+          "name": "devices",
+          "type": {
+            "type": "Pointer",
+            "destination": {
+              "type": "Named",
+              "name": "V5_DeviceType"
+            }
+          }
+        }
+      ],
+      "returns": {
+        "type": "Int"
+      }
+    },
+    {
       "name": "vexSerialWriteChar",
       "params": [
         {
@@ -1576,8 +1594,8 @@
         "type": "Int"
       },
       "variants": {
-        "kControllerMaster": 0,
-        "kControllerPartner": 1
+        "kControllerPartner": 1,
+        "kControllerMaster": 0
       }
     },
     {
@@ -1586,9 +1604,9 @@
         "type": "Int"
       },
       "variants": {
-        "kV5ControllerVexnet": 2,
+        "kV5ControllerOffline": 0,
         "kV5ControllerTethered": 1,
-        "kV5ControllerOffline": 0
+        "kV5ControllerVexnet": 2
       }
     },
     {
@@ -1597,45 +1615,45 @@
         "type": "Int"
       },
       "variants": {
-        "Axis4": 0,
-        "AnaRightY": 3,
-        "ButtonL1": 6,
-        "ButtonRight": 13,
-        "Button7R": 13,
-        "AnaLeftX": 0,
-        "ButtonA": 17,
-        "AnaSpare2": 5,
-        "Button7L": 12,
-        "Button5U": 6,
-        "ButtonY": 16,
-        "Axis3": 1,
-        "Button8L": 16,
-        "ButtonSEL": 18,
-        "ButtonUp": 10,
-        "Axis1": 2,
-        "Button8U": 14,
-        "ButtonR1": 8,
-        "BatteryLevel": 19,
-        "ButtonDown": 11,
-        "AnaRightX": 2,
-        "Button7D": 11,
-        "Button6D": 9,
-        "Axis2": 3,
-        "AnaLeftY": 1,
-        "Button5D": 7,
-        "ButtonAll": 20,
-        "ButtonL2": 7,
-        "ButtonX": 14,
         "Flags": 21,
-        "AnaSpare1": 4,
-        "ButtonLeft": 12,
-        "Button6U": 8,
-        "Button8R": 17,
-        "Button8D": 15,
-        "Button7U": 10,
+        "ButtonL2": 7,
+        "ButtonAll": 20,
+        "Button7L": 12,
         "ButtonR2": 9,
+        "Axis3": 1,
+        "Button6U": 8,
+        "AnaRightX": 2,
+        "ButtonLeft": 12,
+        "ButtonRight": 13,
+        "ButtonX": 14,
+        "AnaLeftY": 1,
+        "Axis1": 2,
+        "ButtonA": 17,
+        "Axis4": 0,
+        "AnaLeftX": 0,
+        "Button6D": 9,
+        "Button7R": 13,
+        "ButtonY": 16,
+        "BatteryCapacity": 22,
+        "Button8L": 16,
+        "Button8D": 15,
+        "AnaSpare1": 4,
+        "Button7D": 11,
+        "ButtonSEL": 18,
+        "AnaSpare2": 5,
+        "Axis2": 3,
+        "Button5D": 7,
+        "Button8R": 17,
+        "ButtonL1": 6,
+        "ButtonUp": 10,
+        "AnaRightY": 3,
+        "Button8U": 14,
+        "Button5U": 6,
+        "BatteryLevel": 19,
+        "ButtonR1": 8,
+        "ButtonDown": 11,
         "ButtonB": 15,
-        "BatteryCapacity": 22
+        "Button7U": 10
       }
     },
     {
@@ -1644,9 +1662,9 @@
         "type": "Int"
       },
       "variants": {
+        "kV5MotorBrakeModeHold": 2,
         "kV5MotorBrakeModeCoast": 0,
-        "kV5MotorBrakeModeBrake": 1,
-        "kV5MotorBrakeModeHold": 2
+        "kV5MotorBrakeModeBrake": 1
       }
     },
     {
@@ -1655,12 +1673,12 @@
         "type": "Int"
       },
       "variants": {
-        "kMotorControlModeUNDEFINED": 6,
-        "kMotorControlModeSERVO": 3,
-        "kMotorControlModeVELOCITY": 5,
-        "kMotorControlModeOFF": 0,
-        "kMotorControlModeBRAKE": 1,
         "kMotorControlModePROFILE": 4,
+        "kMotorControlModeBRAKE": 1,
+        "kMotorControlModeSERVO": 3,
+        "kMotorControlModeOFF": 0,
+        "kMotorControlModeUNDEFINED": 6,
+        "kMotorControlModeVELOCITY": 5,
         "kMotorControlModeHOLD": 2
       }
     },
@@ -1681,9 +1699,9 @@
         "type": "Int"
       },
       "variants": {
+        "kMotorGearSet_06": 2,
         "kMotorGearSet_18": 1,
-        "kMotorGearSet_36": 0,
-        "kMotorGearSet_06": 2
+        "kMotorGearSet_36": 0
       }
     },
     {
@@ -1692,6 +1710,43 @@
         "type": "Int"
       },
       "variants": {}
+    },
+    {
+      "name": "V5_DeviceType",
+      "underlying_type": {
+        "type": "Int"
+      },
+      "variants": {
+        "kDeviceTypeGyroSensor": 70,
+        "kDeviceTypeAdiSensor": 12,
+        "kDeviceTypeRadioSensor": 8,
+        "kDeviceTypeLedSensor": 3,
+        "kDeviceTypeTetherSensor": 9,
+        "kDeviceTypeRes3Sensor": 15,
+        "kDeviceTypeDistanceSensor": 7,
+        "kDeviceTypeAiVisionSensor": 29,
+        "kDeviceTypeNoSensor": 0,
+        "kDeviceTypeCrMotorSensor": 5,
+        "kDeviceTypeBumperSensor": 64,
+        "kDeviceTypeGenericSensor": 128,
+        "kDeviceTypeRes1Sensor": 13,
+        "kDeviceTypeImuSensor": 6,
+        "kDeviceTypeOpticalSensor": 16,
+        "kDeviceTypeAbsEncSensor": 4,
+        "kDeviceTypeGpsSensor": 20,
+        "kDeviceTypeBrainSensor": 10,
+        "kDeviceTypeMagnetSensor": 17,
+        "kDeviceTypePneumaticSensor": 30,
+        "kDeviceTypeGenericSerial": 129,
+        "kDeviceTypeLightTowerSensor": 27,
+        "kDeviceTypeSonarSensor": 71,
+        "kDeviceTypeAicameraSensor": 26,
+        "kDeviceTypeUndefinedSensor": 255,
+        "kDeviceTypeMotorSensor": 2,
+        "kDeviceTypeArmDevice": 28,
+        "kDeviceTypeVisionSensor": 11,
+        "kDeviceTypeRes2Sensor": 14
+      }
     }
   ]
 }

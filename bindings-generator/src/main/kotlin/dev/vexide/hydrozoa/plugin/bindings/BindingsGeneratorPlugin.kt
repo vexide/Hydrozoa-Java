@@ -111,6 +111,10 @@ data class SdkItem(
         @Serializable
         @SerialName("Named")
         data class Named(val name: String) : Type()
+
+        @Serializable
+        @SerialName("Pointer")
+        data class Pointer(val destination: SdkItem.Type) : Type()
     }
 }
 
@@ -162,6 +166,13 @@ fun<N: Node> NodeWithAnnotations<N>.addHydrozoaGeneratedAnnotation(): N {
 
 fun ClassOrInterfaceDeclaration.addStaticInitAnnotation(): ClassOrInterfaceDeclaration {
     return this.addMarkerAnnotation("org.teavm.interop.StaticInit")
+}
+
+fun<T: NodeWithAnnotations<N>, N: Node> T.addNotNullAnnotation(add: Boolean = true): T {
+    if (add) {
+        addMarkerAnnotation("org.jetbrains.annotations.NotNull")
+    }
+    return this
 }
 
 fun ClassOrInterfaceDeclaration.addPrivateConstructor(): ClassOrInterfaceDeclaration {
@@ -239,11 +250,7 @@ class JavaSdkModule(val sdk: SdkModule) {
             is SdkItem.Type.Float -> PrimitiveType(Primitive.FLOAT)
             is SdkItem.Type.Double -> PrimitiveType(Primitive.DOUBLE)
             is SdkItem.Type.StringPtr -> StaticJavaParser.parseClassOrInterfaceType("String")
-                .apply {
-                    if (annotations) {
-                        addMarkerAnnotation("org.jetbrains.annotations.NotNull")
-                    }
-                }
+                .addNotNullAnnotation(annotations)
             is SdkItem.Type.Named -> {
                 if (useRawTypes) {
                     var underlyingType = enums[type.name]?.underlyingType
@@ -251,11 +258,11 @@ class JavaSdkModule(val sdk: SdkModule) {
                 }
 
                 ClassOrInterfaceType(null, JavaSdkEnum.generateEnumName(type.name, sdk.name))
-                    .apply {
-                        if (annotations) {
-                            addMarkerAnnotation("org.jetbrains.annotations.NotNull")
-                        }
-                    }
+                    .addNotNullAnnotation(annotations)
+            }
+            is SdkItem.Type.Pointer -> {
+                ClassOrInterfaceType(null, "org.teavm.interop.Address")
+                    .addNotNullAnnotation(annotations)
             }
         }
     }
@@ -407,13 +414,20 @@ class JavaSdkEnum(val sdk: SdkEnum, val module: JavaSdkModule) {
                 DoubleLiteralExpr(variantValue)
             }
 
+            record.addFieldWithInitializer(
+                underlyingType,
+                variantName,
+                CastExpr(underlyingType, literal),
+                Keyword.PUBLIC,
+                Keyword.STATIC,
+                Keyword.FINAL,
+            )
+
             record
                 .addFieldWithInitializer(
                     recordType,
                     generateMemberName(variantName, name),
-                    ObjectCreationExpr(null, recordType, nodeListOf(
-                        CastExpr(underlyingType, literal)
-                    )),
+                    ObjectCreationExpr(null, recordType, nodeListOf(NameExpr(variantName))),
                     Keyword.PUBLIC,
                     Keyword.STATIC,
                     Keyword.FINAL,

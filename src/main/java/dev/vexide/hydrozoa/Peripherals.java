@@ -142,6 +142,7 @@ public class Peripherals {
 
     /**
      * A unique key that is used to prevent the creation of peripheral devices outside the Peripherals class.
+     * @hidden
      */
     public static class Key {
         private Key() {}

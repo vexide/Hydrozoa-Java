@@ -9,8 +9,8 @@ import org.jetbrains.annotations.NotNull;
  *
  * @see Motor#setTarget(MotorControl)
  */
-public abstract class MotorControl {
-    MotorControl() {
+public sealed abstract class MotorControl {
+    private MotorControl() {
     }
 
     abstract void apply(@NotNull Motor motor);
