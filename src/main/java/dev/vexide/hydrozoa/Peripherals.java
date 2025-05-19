@@ -10,28 +10,27 @@ import org.jetbrains.annotations.Nullable;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-/**
- * A collection of all the peripherals that are available to the robot.
- * <p>
- * Peripherals instances can be used to initialize the robot's hardware by using the various {@code take*} methods.
- * It is important to understand that peripherals may only be removed from the Peripherals instance once. This helps
- * to prevent the accidental duplication of hardware resources.
- * <p>
- * For example, the following examples will throw exceptions because the port number 1 has already been used:
- * <pre>{@code
- * var peripherals = Peripherals.take().orElseThrow();
- *
- * Motor leftMotor = new Motor(peripherals.takePort(1), Motor.Gearset.GREEN, Motor.Direction.FORWARD);
- * Motor rightMotor = new Motor(peripherals.takePort(1), Motor.Gearset.GREEN, Motor.Direction.FORWARD);
- * }</pre>
- * <pre>{@code
- * var peripherals = Peripherals.take().orElseThrow();
- *
- * var port = peripherals.takePort(1);
- * Motor leftMotor = new Motor(port, Motor.Gearset.GREEN, Motor.Direction.FORWARD);
- * Motor rightMotor = new Motor(port, Motor.Gearset.GREEN, Motor.Direction.FORWARD);
- * }</pre>
- */
+/// A collection of all the peripherals that are available to the robot.
+///
+/// Peripherals instances can be used to initialize the robot's hardware by using the various {@code take*} methods.
+/// It is important to understand that peripherals may only be removed from the Peripherals instance once. This helps
+/// to prevent the accidental duplication of hardware resources.
+///
+/// For example, the following examples will throw exceptions because the port number 1 has already been used:
+/// ```java
+/// var peripherals = Peripherals.take().orElseThrow();
+///
+/// Motor leftMotor = new Motor(peripherals.takePort(1), Motor.Gearset.GREEN, Motor.Direction.FORWARD);
+/// Motor rightMotor = new Motor(peripherals.takePort(1), Motor.Gearset.GREEN, Motor.Direction.FORWARD);
+/// ```
+///
+/// ```java
+/// var peripherals = Peripherals.take().orElseThrow();
+///
+/// var port = peripherals.takePort(1);
+/// Motor leftMotor = new Motor(port, Motor.Gearset.GREEN, Motor.Direction.FORWARD);
+/// Motor rightMotor = new Motor(port, Motor.Gearset.GREEN, Motor.Direction.FORWARD);
+/// ```
 public class Peripherals {
     private static final Key key = new Key();
     private static Peripherals instance = new Peripherals();
@@ -47,11 +46,9 @@ public class Peripherals {
         }
     }
 
-    /**
-     * Creates a new instance of the Peripherals class. This method may only be called once.
-     *
-     * @return a new instance of the Peripherals class, or an empty optional if this method has already been called
-     */
+    /// Creates a new instance of the Peripherals class. This method may only be called once.
+    ///
+    /// @return a new instance of the Peripherals class, or an empty optional if this method has already been called
     public static Optional<Peripherals> take() {
         if (instance == null) {
             return Optional.empty();
@@ -62,15 +59,15 @@ public class Peripherals {
         return Optional.of(peripherals);
     }
 
-    /**
-     * Infallibly creates a new instance of the Peripherals class. Using this method can make your program
-     * susceptible to mistakes such as accidentally creating two motors that use the same smart port.
-     * <h4>Conditions</h4>
-     * <p>
-     * This method may not be used to allow multiple instances of smart devices that use the same port to exist
-     * simultaneously.
-     * @return a new instance of the Peripherals class
-     */
+    /// Infallibly creates a new instance of the Peripherals class. Using this method can make your program
+    /// susceptible to mistakes such as accidentally creating two motors that use the same smart port.
+    ///
+    /// #### Conditions
+    ///
+    /// This method may not be used to allow multiple instances of smart devices that use the same port to exist
+    /// simultaneously.
+    ///
+    /// @return a new instance of the Peripherals class
     public static @NotNull Peripherals unsafelyCreate() {
         return new Peripherals();
     }
