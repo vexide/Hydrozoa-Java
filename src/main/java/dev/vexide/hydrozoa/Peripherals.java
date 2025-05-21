@@ -72,13 +72,11 @@ public class Peripherals {
         return new Peripherals();
     }
 
-    /**
-     * Takes a smart port from this collection.
-     * @param portNumber the port number to take, as labeled on the robot brain
-     * @return the smart port
-     * @throws IllegalArgumentException if the port number is not in the range [1, 21]
-     * @throws NoSuchElementException if the port has already been removed
-     */
+    /// Takes a smart port from this collection.
+    /// @param portNumber the port number to take, as labeled on the robot brain
+    /// @return the smart port
+    /// @throws IllegalArgumentException if the port number is not in the range [1, 21]
+    /// @throws NoSuchElementException if the port has already been removed
     @Contract("_ -> new")
     public @NotNull SmartPort takePort(int portNumber) throws IllegalArgumentException, NoSuchElementException {
         if (portNumber <= 0 || portNumber > ports.length) {
@@ -96,12 +94,10 @@ public class Peripherals {
         return port;
     }
 
-    /**
-     * Takes a controller from this collection.
-     * @param id the ID of the controller to take
-     * @return the controller
-     * @throws NoSuchElementException if the controller with this ID has already been removed
-     */
+    /// Takes a controller from this collection.
+    /// @param id the ID of the controller to take
+    /// @return the controller
+    /// @throws NoSuchElementException if the controller with this ID has already been removed
     @Contract("_ -> new")
     public @NotNull Controller takeController(@NotNull Controller.Id id) throws NoSuchElementException {
         Controller controller;
@@ -120,11 +116,9 @@ public class Peripherals {
         return controller;
     }
 
-    /**
-     * Takes the display from this collection.
-     * @return the display
-     * @throws NoSuchElementException if the display has already been removed
-     */
+    /// Takes the display from this collection.
+    /// @return the display
+    /// @throws NoSuchElementException if the display has already been removed
     @Contract("-> new")
     public @NotNull Display takeDisplay() throws NoSuchElementException {
         var display = this.display;
@@ -137,10 +131,8 @@ public class Peripherals {
         return display;
     }
 
-    /**
-     * A unique key that is used to prevent the creation of peripheral devices outside the Peripherals class.
-     * @hidden
-     */
+    /// A unique key that is used to prevent the creation of peripheral devices outside the Peripherals class.
+    /// @hidden
     public static class Key {
         private Key() {}
     }
