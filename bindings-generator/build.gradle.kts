@@ -33,5 +33,3 @@ gradlePlugin {
         implementationClass = "dev.vexide.hydrozoa.plugin.bindings.BindingsGeneratorPlugin"
     }
 }
-
-gradlePlugin.testSourceSets.add(sourceSets["functionalTest"])
