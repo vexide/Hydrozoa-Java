@@ -10,6 +10,8 @@ also includes a Gradle plugin to make it easier to deploy Hydrozoa programs to r
 
 ## Running Examples
 
+You'll need [Hydrozoa](https://github.com/vexide/hydrozoa) installed.
+
 Run the following command with a VEX V5 robot connected via USB.
 
 ```shell
