@@ -10,7 +10,7 @@ also includes a Gradle plugin to make it easier to deploy Hydrozoa programs to r
 
 ## Running Examples
 
-You'll need [Hydrozoa](https://github.com/vexide/hydrozoa) installed.
+You'll need [Hydrozoa CLI](https://github.com/vexide/hydrozoa-cli) installed.
 
 Run the following command with a VEX V5 robot connected via USB.
 
@@ -23,3 +23,5 @@ Other examples can be run similarly:
 ```shell
 ./gradlew examples:clawbot-kotlin:upload
 ```
+
+If you want to make your own Hydrozoa Java project, use this [template](https://github.com/vexide/hydrozoa-java-template).
